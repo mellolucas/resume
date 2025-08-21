@@ -1,0 +1,42 @@
+# linkedin.yaml - LinkedIn-specific overrides
+personal:
+  headline: "Software Engineer | Backend Systems | 5+ Years Experience | Python, Java, Go"
+
+# LinkedIn focuses more on professional achievements and networking
+experience:
+  - title: "Senior Software Engineer"
+    company: "Tech Corp"
+    location: "San Francisco, CA"
+    startDate: "2022-06"
+    endDate: "Present"
+    bullets:
+      - "Led development of **microservices architecture** serving **10M+ daily requests** with **99.9% uptime**"
+      - "**Mentored 5 junior engineers** and established **best practices** for code review and deployment"
+      - "Collaborated with **cross-functional teams** to deliver **critical features** ahead of schedule"
+  
+  - title: "Software Engineer"
+    company: "StartupXYZ"
+    location: "Austin, TX"
+    startDate: "2020-01"
+    endDate: "2022-05"
+    bullets:
+      - "Developed **scalable REST APIs** serving **1M+ daily requests** using **Django and PostgreSQL**"
+      - "Implemented **CI/CD pipelines** reducing deployment time by **60%** and improving reliability"
+      - "Contributed to **company growth** by building features that increased user engagement by **25%**"
+
+# Focus on fewer, more impressive projects for LinkedIn
+projects:
+  - title: "Open Source Developer Tools"
+    url: "https://github.com/johndoe/dev-tools"
+    bullets:
+      - "Created CLI tools used by **500+ developers** in the community for project scaffolding"
+      - "**Active maintainer** with 95% test coverage and comprehensive documentation"
+
+# Add languages section for LinkedIn networking
+languages:
+  - name: "English"
+    level: "Native"
+  - name: "Spanish"
+    level: "Professional"
+  - name: "Portuguese"
+    level: "Conversational"
