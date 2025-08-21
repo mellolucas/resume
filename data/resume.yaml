@@ -1,0 +1,39 @@
+# resume.yaml - Override file for resume-specific customizations
+personal:
+  headline: "Experienced Software Engineer with 5+ years in scalable backend systems"
+
+skills:
+  - category: "CAD"
+    items: ["Siemens NX", "CATIA V5", "SolidWorks"]
+  - category: "Analysis"
+    items: ["Thermal Desktop", "Abaqus", "LS-DYNA", "STAR-CCM+"]
+
+# Only include most relevant experience for resume
+experience:
+  - title: "Senior Software Engineer"
+    company: "Tech Corp"
+    location: "San Francisco, CA"
+    startDate: "2022-06"
+    endDate: "Present"
+    bullets:
+      - "**STAR:** Developed microservices architecture to handle increased traffic (**S**ituation), tasked with scaling system (**T**ask), implemented Kubernetes-based solution (**A**ction), achieved 10M+ daily requests with 99.9% uptime (**R**esult)"
+      - "**XYZ:** Reduced database query response time by **40%** as measured by **average latency metrics** by implementing **strategic indexing and query optimization**"
+      - "**CAR:** Faced challenge of team coordination issues (**C**hallenge), implemented agile methodologies and daily standups (**A**ction), delivered critical features 3 weeks ahead of schedule (**R**esult)"
+
+  - title: "Software Engineer"
+    company: "StartupXYZ"
+    location: "Austin, TX"
+    startDate: "2020-01"
+    endDate: "2022-05"
+    bullets:
+      - "**XYZ:** Increased system reliability by **99.9%** as measured by **uptime metrics** by implementing **comprehensive CI/CD pipelines and monitoring**"
+      - "**STAR:** Company needed to handle growing user base (**S**ituation), assigned to optimize API performance (**T**ask), refactored database queries and added caching (**A**ction), served 1M+ daily requests (**R**esult)"
+      - "**CAR:** Challenge of manual deployment processes causing delays (**C**hallenge), automated deployment pipeline with Docker and Jenkins (**A**ction), reduced deployment time by 60% (**R**esult)"
+
+# Limit to most impressive projects for resume
+projects:
+  - title: "Personal Finance Tracker"
+    url: "https://github.com/johndoe/finance-tracker"
+    bullets:
+      - "Full-stack web application built with React and Node.js for expense tracking and financial insights"
+      - "Implemented real-time data visualization and automated budget alerts with 500+ active users"

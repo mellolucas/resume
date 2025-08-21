@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
+\usepackage{XCharter}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\raggedright
+\pagestyle{empty}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt}
+
+\begin{document}
+
+% name
+\centerline{\Huge John Doe}
+
+\vspace{5pt}
+
+% contact information
+\centerline{john.doe@example.com | https://johndoe.dev | https://github.com/johndoe | https://linkedin.com/in/johndoe}
+
+\vspace{-10pt}
+
+
+\section*{Skills}
+\textbf{ CAD:} Siemens NX, CATIA V5, SolidWorks \\
+\textbf{ Analysis:} Thermal Desktop, Abaqus, LS-DYNA, STAR-CCM+
+
+
+\vspace{-6.5pt}
+
+
+
+\section*{Experience}
+\textbf{ Senior Software Engineer,} Tech Corp -- San Francisco, CA \hfill 2022-06 -- Present \\
+\vspace{-9pt}
+\begin{itemize}
+\item \textbf{STAR:} Developed microservices architecture to handle increased traffic (\textbf{S}ituation), tasked with scaling system (\textbf{T}ask), implemented Kubernetes-based solution (\textbf{A}ction), achieved 10M+ daily requests with 99.9% uptime (\textbf{R}esult)
+\item \textbf{XYZ:} Reduced database query response time by \textbf{40%} as measured by \textbf{average latency metrics} by implementing \textbf{strategic indexing and query optimization}
+\item \textbf{CAR:} Faced challenge of team coordination issues (\textbf{C}hallenge), implemented agile methodologies and daily standups (\textbf{A}ction), delivered critical features 3 weeks ahead of schedule (\textbf{R}esult)
+\end{itemize}
+
+
+\textbf{ Software Engineer,} StartupXYZ -- Austin, TX \hfill 2020-01 -- 2022-05 \\
+\vspace{-9pt}
+\begin{itemize}
+\item \textbf{XYZ:} Increased system reliability by \textbf{99.9%} as measured by \textbf{uptime metrics} by implementing \textbf{comprehensive CI/CD pipelines and monitoring}
+\item \textbf{STAR:} Company needed to handle growing user base (\textbf{S}ituation), assigned to optimize API performance (\textbf{T}ask), refactored database queries and added caching (\textbf{A}ction), served 1M+ daily requests (\textbf{R}esult)
+\item \textbf{CAR:} Challenge of manual deployment processes causing delays (\textbf{C}hallenge), automated deployment pipeline with Docker and Jenkins (\textbf{A}ction), reduced deployment time by 60% (\textbf{R}esult)
+\end{itemize}
+
+
+\vspace{-18.5pt}
+
+
+
+\section*{Projects}
+\textbf{ Personal Finance Tracker} \hfill https://github.com/johndoe/finance-tracker \\
+\vspace{-9pt}
+\begin{itemize}
+\item Full-stack web application built with React and Node.js for expense tracking and financial insights
+\item Implemented real-time data visualization and automated budget alerts with 500+ active users
+\end{itemize}
+
+
+\vspace{-18.5pt}
+
+
+
+\section*{Education}
+\textbf{ University of California, Berkeley} -- Bachelor of Science in Computer Science \hfill 2019-05 \\
+\textbf{ Stanford University} -- Master of Science in Software Engineering \hfill 2021-12
+
+
+\end{document}

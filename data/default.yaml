@@ -1,0 +1,82 @@
+personal:
+  name: "John Doe"
+  headline: "Software Engineer specializing in backend development"
+  company: "Tech Corp"
+  location: "San Francisco, CA"
+  role:
+    title: "Senior Software Engineer"
+    level: "Senior"
+    domain: "Backend Development"
+  contacts:
+    - name: "email"
+      value: "john.doe@example.com"
+    - name: "portfolio"
+      value: "https://johndoe.dev"
+    - name: "github"
+      value: "https://github.com/johndoe"
+    - name: "linkedin"
+      value: "https://linkedin.com/in/johndoe"
+
+skills:
+  - category: "Programming Languages"
+    items: ["Python", "Java", "Go", "JavaScript"]
+  - category: "Frameworks"
+    items: ["Django", "Spring Boot", "React", "Node.js"]
+  - category: "Databases"
+    items: ["PostgreSQL", "MongoDB", "Redis"]
+  - category: "Tools"
+    items: ["Docker", "Kubernetes", "AWS", "Git"]
+
+languages:
+  - name: "English"
+    level: "Native"
+  - name: "Spanish"
+    level: "Fluent"
+  - name: "French"
+    level: "Conversational"
+
+experience:
+  - title: "Senior Software Engineer"
+    company: "Tech Corp"
+    location: "San Francisco, CA"
+    startDate: "2022-06"
+    endDate: "Present"
+    bullets:
+      - "**Architected and implemented** a microservices platform serving **10M+ daily requests** using **Python and Kubernetes**"
+      - "**Led a team of 5 engineers** to deliver critical features **3 weeks ahead of schedule** by implementing **agile methodologies**"
+      - "**Optimized database queries** reducing response time by **40%** through **strategic indexing and caching**"
+  
+  - title: "Software Engineer"
+    company: "StartupXYZ"
+    location: "Austin, TX"
+    startDate: "2020-01"
+    endDate: "2022-05"
+    bullets:
+      - "**Developed RESTful APIs** serving **1M+ requests daily** using **Django and PostgreSQL**"
+      - "**Implemented CI/CD pipelines** reducing deployment time by **60%** using **Docker and Jenkins**"
+      - "**Collaborated with product team** to deliver **15+ features** that increased user engagement by **25%**"
+
+projects:
+  - title: "Personal Finance Tracker"
+    url: "https://github.com/johndoe/finance-tracker"
+    bullets:
+      - "**Built a full-stack web application** using **React and Node.js** to track personal expenses"
+      - "**Implemented data visualization** showing spending patterns with **Chart.js integration**"
+      - "**Deployed on AWS** with automated backups and **99.9% uptime**"
+  
+  - title: "Open Source CLI Tool"
+    url: "https://github.com/johndoe/dev-tools"
+    bullets:
+      - "**Created a developer productivity tool** used by **500+ developers** for project scaffolding"
+      - "**Maintained 95% test coverage** with comprehensive unit and integration tests"
+
+education:
+  - degree: "Bachelor of Science in Computer Science"
+    school: "University of California, Berkeley"
+    location: "Berkeley, CA"
+    graduationDate: "2019-05"
+  
+  - degree: "Master of Science in Software Engineering"
+    school: "Stanford University"
+    location: "Stanford, CA"
+    graduationDate: "2021-12"
