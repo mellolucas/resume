@@ -1,0 +1,83 @@
+{
+  "name": "Universal Codespace",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  
+  // Sets or overrides environment variables for the devcontainer supporting service/tool (VS Code) and related 
+  // sub-processes (terminals, tasks, debug, etc).
+  "remoteEnv": {
+    "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
+  },
+  
+  // Sets or overrides environment variables on the container itself. 
+  // These will be static (must rebuild to update), and accessible to all processes.
+  "containerEnv": {
+    "http_proxy": "${localEnv:HTTP_PROXY}",
+    "https_proxy": "${localEnv:HTTPS_PROXY}",
+    "no_proxy": "${localEnv:NO_PROXY}"
+  },
+  
+  // Runs once when creating the container, immediately after first start (after initializeCommand).
+  // Good for caching or prebuilding a container (access to repo/org scoped secrets and permissions; not user).
+  // "onCreateCommand": "",
+  
+  // Runs when creating the container, after onCreateCommand (rerun during creation when workspace content was updated).
+  // Good for refreshing cached or prebuilt containers (access to repo/org scoped secrets and permissions; not user).
+  // "updateContentCommand": "",
+
+  // Runs upon container creation, after updateContentCommand, once it's assigned to a user for the first time.
+  // Last of 3 commands that finalizes container setup (access to user scoped secrets and permissions). 
+  // "postCreateCommand": ".devcontainer/post-create.sh",
+
+  // Runs each time the container is successfully (re-)started.
+  // "postStartCommand": "",
+
+  // Runs each time a tool has successfully attached to the container.
+  // "postAttachCommand": "",
+
+  // Set which command must complete before any tool connects to the container, and interactive use is allowed,
+  // continuing execution in the background while the UI is starting up (default: updateContentCommand).
+  // "waitFor": "updateContentCommand",
+
+  "features": {
+    // "ghcr.io/devcontainers/features/common-utils:2": {}, // Already included in base:ubuntu
+    // "ghcr.io/devcontainers/features/git:1": {}, // Already included in base:ubuntu
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
+    // "ghcr.io/devcontainers/features/go:1": {}
+  },
+
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md"]
+    },
+
+    "vscode": {
+      "extensions": [
+        "github.vscode-pull-request-github", // Manage GitHub PRs and Issues
+        "github.copilot", // GitHub Copilot + Copilot Chat
+        "github.vscode-github-actions", // GitHub Actions integration
+
+        "bierner.markdown-preview-github-styles", // Preview GitHub-flavored Markdown
+        "davidanson.vscode-markdownlint", // Markdown quality and consistency
+        "yzhang.markdown-all-in-one", // Markdown productivity helpers
+        "esbenp.prettier-vscode", // Fallback code formatter
+
+        "redhat.vscode-yaml", // YAML language support
+        "ms-azuretools.vscode-docker" // Docker support
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "markdown.extension.list.indentationSize": "adaptive",
+        "markdown.extension.italic.indicator": "_",
+        "markdown.extension.orderedList.marker": "one",
+        "chat.agent.enabled": true,
+        "chat.mcp.enabled": true
+      }
+    }
+  }
+}
