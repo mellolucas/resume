@@ -1,4 +1,22 @@
-# --- LaTeX .gitignore file ---
+# Created by https://www.toptal.com/developers/gitignore/api/git,zsh,node,linux,macos,xcode,windows,powershell,visualstudiocode,latex
+# Edit at https://www.toptal.com/developers/gitignore?templates=git,zsh,node,linux,macos,xcode,windows,powershell,visualstudiocode,latex
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
+
+### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -27,9 +45,7 @@
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
-*.bbl-SAVE-ERROR
 *.bcf
-*.bcf-SAVE-ERROR
 *.blg
 *-blx.aux
 *-blx.bib
@@ -42,8 +58,6 @@
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
-*.rubbercache
-rubber.cache
 
 ## Build tool directories for auxiliary files
 # latexrun
@@ -60,9 +74,6 @@ acs-*.bib
 # amsthm
 *.thm
 
-# attachfile2
-*.atfi
-
 # beamer
 *.nav
 *.pre
@@ -71,7 +82,6 @@ acs-*.bib
 
 # changes
 *.soc
-*.loc
 
 # comment
 *.cut
@@ -115,11 +125,8 @@ acs-*.bib
 *.acn
 *.acr
 *.glg
-*.glg-abr
 *.glo
-*.glo-abr
 *.gls
-*.gls-abr
 *.glsdefs
 *.lzo
 *.lzs
@@ -150,9 +157,6 @@ acs-*.bib
 *.trc
 *.xref
 
-# hypdoc
-*.hd
-
 # hyperref
 *.brf
 
@@ -161,9 +165,6 @@ acs-*.bib
 # TODO Uncomment the next line if you use knitr and want to ignore its generated tikz files
 # *.tikz
 *-tikzDictionary
-
-# latexindent will create succesive backup files by default
-#*.bak*
 
 # listings
 *.lol
@@ -187,7 +188,6 @@ acs-*.bib
 
 # minted
 _minted*
-*.data.minted
 *.pyg
 
 # morewrites
@@ -214,10 +214,6 @@ _minted*
 
 # scrwfile
 *.wrt
-
-# spelling
-*.spell.bad
-*.spell.txt
 
 # svg
 svg-inkscape/
@@ -284,9 +280,6 @@ TSWLatexianTemp*
 *.bak
 *.sav
 
-# latexindent.pl
-*.bak[0-9]*
-
 # Texpad
 .texpadtmp
 
@@ -326,24 +319,12 @@ TSWLatexianTemp*
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
 
-# --- default .gitignore file ---
-# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,git,zsh,powershell,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,git,zsh,powershell,node
+### LaTeX Patch ###
+# LIPIcs / OASIcs
+*.vtc
 
-### Git ###
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-*.orig
-
-# Created by git when using merge tools for conflicts
-*.BACKUP.*
-*.BASE.*
-*.LOCAL.*
-*.REMOTE.*
-*_BACKUP_*.txt
-*_BASE_*.txt
-*_LOCAL_*.txt
-*_REMOTE_*.txt
+# glossaries
+*.glstex
 
 ### Linux ###
 *~
@@ -396,7 +377,6 @@ Temporary Items
 ### Node ###
 # Logs
 logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -540,6 +520,25 @@ dist
 # Exclude .NET assemblies from source
 *.dll
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -565,6 +564,23 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+### Xcode ###
+## User settings
+xcuserdata/
+
+## Xcode 8 and earlier
+*.xcscmblueprint
+*.xccheckout
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
 
 ### Zsh ###
 # Zsh compiled script + zrecompile backup
@@ -602,4 +618,4 @@ zsdoc/data
 /tests/_output/*
 !/tests/_output/.gitkeep
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,git,zsh,powershell,node
+# End of https://www.toptal.com/developers/gitignore/api/git,zsh,node,linux,macos,xcode,windows,powershell,visualstudiocode,latex
