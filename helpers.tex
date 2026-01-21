@@ -1,0 +1,62 @@
+% ---------- helpers ----------
+%
+% This file defines small, reusable helpers used by the resume commands.
+% It assumes core packages are loaded by main.tex (e.g., xparse, hyperref).
+
+% ---- hyperlink ----
+% \link{visible text}{url}
+% Uses \detokenize to avoid having to escape underscores and other URL chars.
+\ExplSyntaxOn
+\NewDocumentCommand{\link}{m m}{%
+  \href{\tl_to_str:e { #2 }}{\underline{#1}}%
+}
+\ExplSyntaxOff
+
+% \linkplain{visible text}{url}
+\ExplSyntaxOn
+\NewDocumentCommand{\linkplain}{m m}{%
+  \href{\tl_to_str:e { #2 }}{#1}%
+}
+\ExplSyntaxOff
+
+% ---- date formatting (YYYY/MM/DD -> Mon YYYY) ----
+\ExplSyntaxOn
+
+% Dedicated scratch vars (avoid relying on \l_tmpa_* across multiple helpers)
+\seq_new:N \l__cv_date_parts_seq
+\tl_new:N  \l__cv_date_month_tl
+\tl_new:N  \l__cv_date_year_tl
+
+% \dateMY{2026/01/15} -> Jan 2026
+% If input is not in YYYY/MM/DD form (e.g., "present"), prints it as-is.
+\NewDocumentCommand{\dateMY}{m}
+  { \__cv_date_my:n { #1 } }
+
+\cs_new_protected:Npn \__cv_date_my:n #1
+  {
+    \seq_set_split:Nnn \l__cv_date_parts_seq { / } { #1 }
+    \int_compare:nNnTF { \seq_count:N \l__cv_date_parts_seq } = { 3 }
+      {
+        \tl_set:Nn \l__cv_date_year_tl  { \seq_item:Nn \l__cv_date_parts_seq { 1 } }
+        \tl_set:Nn \l__cv_date_month_tl { \seq_item:Nn \l__cv_date_parts_seq { 2 } }
+        % Output: Mon YYYY (day ignored)
+        \__cv_month_abbrev:n { \l__cv_date_month_tl }~\l__cv_date_year_tl
+      }
+      {
+        % Not a YYYY/MM/DD triplet -> print as-is
+        #1
+      }
+  }
+
+\cs_new:Npn \__cv_month_abbrev:n #1
+  {
+    \int_case:nnF { \int_eval:n {#1} }
+      {
+        { 1 } { Jan } { 2 } { Feb } { 3 } { Mar } { 4 } { Apr }
+        { 5 } { May } { 6 } { Jun } { 7 } { Jul } { 8 } { Aug }
+        { 9 } { Sep } { 10 } { Oct } { 11 } { Nov } { 12 } { Dec }
+      }
+      { ??? } % fallback if month is invalid
+  }
+
+\ExplSyntaxOff

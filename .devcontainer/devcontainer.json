@@ -1,31 +1,31 @@
 {
   "name": "Universal Codespace",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  
-  // Sets or overrides environment variables for the devcontainer supporting service/tool (VS Code) and related 
+
+  // Sets or overrides environment variables for the devcontainer supporting service/tool (VS Code) and related
   // sub-processes (terminals, tasks, debug, etc).
   "remoteEnv": {
     "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
   },
-  
-  // Sets or overrides environment variables on the container itself. 
+
+  // Sets or overrides environment variables on the container itself.
   // These will be static (must rebuild to update), and accessible to all processes.
   "containerEnv": {
     "http_proxy": "${localEnv:HTTP_PROXY}",
     "https_proxy": "${localEnv:HTTPS_PROXY}",
     "no_proxy": "${localEnv:NO_PROXY}"
   },
-  
+
   // Runs once when creating the container, immediately after first start (after initializeCommand).
   // Good for caching or prebuilding a container (access to repo/org scoped secrets and permissions; not user).
   // "onCreateCommand": "",
-  
+
   // Runs when creating the container, after onCreateCommand (rerun during creation when workspace content was updated).
   // Good for refreshing cached or prebuilt containers (access to repo/org scoped secrets and permissions; not user).
   // "updateContentCommand": "",
 
   // Runs upon container creation, after updateContentCommand, once it's assigned to a user for the first time.
-  // Last of 3 commands that finalizes container setup (access to user scoped secrets and permissions). 
+  // Last of 3 commands that finalizes container setup (access to user scoped secrets and permissions).
   // "postCreateCommand": ".devcontainer/post-create.sh",
 
   // Runs each time the container is successfully (re-)started.
@@ -56,6 +56,7 @@
 
     "vscode": {
       "extensions": [
+        "ms-vscode-remote.vscode-remote-extensionpack", // Remote Development Extension Pack
         "github.vscode-pull-request-github", // Manage GitHub PRs and Issues
         "github.copilot", // GitHub Copilot + Copilot Chat
         "github.vscode-github-actions", // GitHub Actions integration

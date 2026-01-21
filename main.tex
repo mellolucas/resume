@@ -1,0 +1,92 @@
+% ---------- main.tex ----------
+%
+% Main entry point for the resume document.
+% Defines document class, loads packages, configures formatting, and assembles sections.
+%
+% Build: pdflatex main.tex (or lualatex/xelatex for Unicode fonts)
+%
+
+% ---- document class ----
+\documentclass[11pt]{article}       % set main text size
+
+% ---- packages ----
+\usepackage{import}                 % enable import package for modular file structure
+\usepackage{xparse}                 % enable xparse for advanced command definitions
+
+\usepackage[letterpaper,            % set paper size (use a4paper for resumes outside North America)
+top=0.5in,                          % specify top page margin
+bottom=0.5in,                       % specify bottom page margin
+left=0.5in,                         % specify left page margin
+right=0.5in]{geometry}              % specify right page margin
+                       
+% ---- fonts and encoding ----
+\usepackage{XCharter}               % set font (comment out to use default Computer Modern)
+\usepackage{iftex}                  % detect LaTeX engine for conditional loading
+
+\ifPDFTeX
+  \usepackage[T1]{fontenc}          % font encoding for pdfLaTeX
+  \usepackage[utf8]{inputenc}       % input encoding for pdfLaTeX
+\else
+  \usepackage{fontspec}             % font selection for LuaLaTeX/XeLaTeX
+\fi
+
+% ---- typography and formatting ----
+\usepackage{microtype}              % enable micro-typographic enhancements
+\usepackage{enumitem}               % enable lists for bullet points: itemize and \item
+\usepackage{titlesec}               % enable section title customization
+\usepackage[hidelinks]{hyperref}    % format hyperlinks without visible borders
+
+% ---- page layout ----
+\raggedright                        % disable text justification
+\pagestyle{empty}                   % disable page numbering
+
+% ---- PDF accessibility (pdfLaTeX only) ----
+% Ensure PDF output is Unicode-compliant and machine-readable (ATS-friendly)
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+% ---- section headings ----
+% Format: bold, large, with horizontal rule below
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
+
+% ---- bullet points ----
+% Format: small bullets, compact spacing
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt}
+
+% ---- load commands ----
+% Import constants, helpers, and functions
+\import{./}{commands.tex}
+
+% ==========================================================================
+%                              DOCUMENT BODY
+% ==========================================================================
+\begin{document}
+
+% ---- contact header ----
+\import{sections/}{contact.tex}
+\vspace{-10pt}
+
+% ---- summary ----
+\import{sections/}{summary}
+\vspace{-6.5pt}
+
+% ---- skills ----
+\import{sections/}{skills.tex}
+\vspace{-6.5pt}
+
+% ---- experience ----
+\import{sections/}{experience.tex}
+\vspace{-18.5pt}
+
+% ---- projects (optional) ----
+% Uncomment to include projects section
+% \import{sections/}{projects.tex}
+% \vspace{-18.5pt}
+
+% ---- education ----
+\import{sections/}{education.tex}
+
+\end{document}

@@ -1,0 +1,18 @@
+% ---------- contact.tex ----------
+%
+% Contact header section: displays name and contact links.
+% Uses constants from constants.tex and commands from functions.tex.
+%
+
+% ---- name ----
+\centerline{\Huge \name}
+\vspace{5pt}
+
+% ---- contact links ----
+\centerline{%
+  \contactinfo{
+    \contactentry{\email}{mailto:\email},
+    \contactentry{linkedin.com/in/\linkedin}{https://www.linkedin.com/in/\linkedin},
+    \contactentry{github.com/\github}{https://github.com/\github}
+  }%
+}
