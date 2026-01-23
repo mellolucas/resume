@@ -1,0 +1,56 @@
+% ---------- TEMPLATE: Experience Entry ----------
+% [Month] [Year] - [Month] [Year] or present
+%
+% Instructions:
+% 1. Copy this file to sections/experience/YYYYMMDD-company-role.tex
+%    - Use the start date in YYYYMMDD format for the filename
+%    - Example: 20240315-acme-senior-engineer.tex
+% 2. Update the header comment with company, title, and date range
+% 3. Fill in the \job command parameters
+% 4. Add 3-5 bullet points highlighting key achievements
+% 5. Import this file in sections/experience.tex (newest entries first)
+% 6. Delete this template file or keep for future reference
+%
+
+% Job command syntax:
+% \job[seniority]{profession}{role}{Company}{City, ST}{start date}{end date}
+%
+% Parameters:
+%   [seniority] - Optional: "Senior", "Lead", "Principal", etc. (omit brackets if not used)
+%   {profession} - Required: "Software Engineer", "Product Manager", etc.
+%   {role} - Required: Team/department name, or empty {} if not applicable
+%   {Company} - Required: Company name
+%   {City, ST} - Required: "San Francisco, CA" or "Remote"
+%   {start date} - Required: YYYY/MM/DD format (e.g., 2024/03/15)
+%   {end date} - Required: YYYY/MM/DD format or "present"
+
+\job[Senior]{Software Engineer}{Platform Engineering}{Company Name}{City, ST}{2026/01/01}{present}
+
+% Adjust spacing before bullet points
+% -9pt is standard; use -7pt for more space, -11pt for less
+\vspace{-9pt}
+
+% Bullet points: 3-5 achievements with measurable impact
+% Start with action verbs: Built, Designed, Led, Implemented, Architected
+% Include metrics: percentages, numbers, scale, impact
+% Focus on outcomes, not just responsibilities
+\begin{itemize}
+  \item Built cloud-native microservices platform that reduced deployment time by 75\%; implemented CI/CD pipelines using Kubernetes and GitOps, resulting in 3x faster release cycles
+
+  \item Led cross-functional team of 8 engineers to migrate legacy monolith to microservices architecture; delivered project 2 weeks ahead of schedule, enabling independent team deployments for 50+ developers
+
+  \item Designed and implemented distributed caching solution that reduced database load by 60\%; improved API response times from 500ms to 50ms, enhancing user experience for 100K+ daily active users
+
+  \item Collaborated with product and design teams to architect new feature flag system; resulted in 40\% reduction in production incidents and enabled safer progressive rollouts across 5 production environments
+
+  \item Mentored 3 junior engineers on cloud architecture and DevOps best practices; increased team velocity by 30\% and improved code review quality through pair programming and knowledge sharing sessions
+\end{itemize}
+
+% Best Practices:
+% - Lead with your most impressive achievement
+% - Use past tense for previous jobs, present tense for current role
+% - Be specific with technologies, tools, and methodologies used
+% - Quantify impact whenever possible (users, revenue, time saved, etc.)
+% - Show progression of responsibility across roles
+% - Avoid jargon that's too company-specific
+% - Keep bullet points concise (1-2 lines each)

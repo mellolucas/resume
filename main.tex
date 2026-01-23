@@ -10,9 +10,11 @@
 \documentclass[11pt]{article}       % set main text size
 
 % ---- packages ----
+% Core packages for document structure
 \usepackage{import}                 % enable import package for modular file structure
 \usepackage{xparse}                 % enable xparse for advanced command definitions
 
+% Page layout
 \usepackage[letterpaper,            % set paper size (use a4paper for resumes outside North America)
 top=0.5in,                          % specify top page margin
 bottom=0.5in,                       % specify bottom page margin
@@ -20,6 +22,9 @@ left=0.5in,                         % specify left page margin
 right=0.5in]{geometry}              % specify right page margin
                        
 % ---- fonts and encoding ----
+% XCharter: professional serif font, good for print resumes
+% Note: Available by default in Overleaf. For local compilation, install via TeX Live.
+% Alternative fonts: \usepackage{libertine}, \usepackage{lmodern}, or comment out for Computer Modern
 \usepackage{XCharter}               % set font (comment out to use default Computer Modern)
 \usepackage{iftex}                  % detect LaTeX engine for conditional loading
 
@@ -70,7 +75,7 @@ right=0.5in]{geometry}              % specify right page margin
 \vspace{-10pt}
 
 % ---- summary ----
-\import{sections/}{summary}
+\import{sections/}{summary.tex}
 \vspace{-6.5pt}
 
 % ---- skills ----
