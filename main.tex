@@ -65,6 +65,18 @@ right=0.5in]{geometry}              % specify right page margin
 % Import constants, helpers, and functions
 \import{./}{commands.tex}
 
+% ---- PDF metadata (ATS-friendly and accessibility) ----
+% Set document metadata for search engines, ATS systems, and accessibility
+% Note: Placed after loading constants.tex so \name is defined
+\hypersetup{
+  pdftitle={Resume - \name},
+  pdfauthor={\name},
+  pdfsubject={Professional Resume},
+  pdfkeywords={Software Engineer, Cloud Platform, DevOps, AI, GitHub Enterprise},
+  pdfcreator={LaTeX with hyperref},
+  pdfproducer={pdfTeX}
+}
+
 % ==========================================================================
 %                              DOCUMENT BODY
 % ==========================================================================

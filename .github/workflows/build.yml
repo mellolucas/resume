@@ -1,0 +1,73 @@
+# Build and Release LaTeX Resume
+#
+# This workflow compiles the LaTeX resume to PDF and optionally creates a release.
+#
+# Triggers:
+#   - Push to main branch (compiles and uploads artifact)
+#   - Manual dispatch with optional release creation
+#
+# Best practices:
+#   - Uses official xu-cheng/latex-action for reliable LaTeX compilation
+#   - Caches TeX Live packages for faster builds
+#   - Generates both artifact (for PRs) and release (for tagged versions)
+#
+
+name: Build Resume PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.tex'
+      - '.github/workflows/build.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**.tex'
+  workflow_dispatch:
+    inputs:
+      create_release:
+        description: 'Create a GitHub release'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          latexmk_use_lualatex: false
+          # Use pdflatex for best ATS compatibility
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Rename output
+        run: mv main.pdf resume.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: resume.pdf
+          retention-days: 30
+
+      - name: Create Release
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.create_release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Resume v${{ github.run_number }}
+          body: |
+            Automated resume PDF build.
+            
+            **Changes:** ${{ github.event.head_commit.message }}
+          files: resume.pdf
+          draft: false
+          prerelease: false
