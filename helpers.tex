@@ -43,17 +43,24 @@
 
 \cs_new_protected:Npn \__cv_date_my:n #1
   {
-    \seq_set_split:Nnn \l__cv_date_parts_seq { / } { #1 }
-    \int_compare:nNnTF { \seq_count:N \l__cv_date_parts_seq } = { 3 }
+    \str_case:nnF { \tl_lower_case:n { #1 } }
       {
-        \tl_set:Nn \l__cv_date_year_tl  { \seq_item:Nn \l__cv_date_parts_seq { 1 } }
-        \tl_set:Nn \l__cv_date_month_tl { \seq_item:Nn \l__cv_date_parts_seq { 2 } }
-        % Output: Mon YYYY (day ignored)
-        \__cv_month_abbrev:n { \l__cv_date_month_tl }~\l__cv_date_year_tl
+        { present } { Present }
+        { current } { Present }
       }
       {
-        % Not a YYYY/MM/DD triplet -> print as-is
-        #1
+        \seq_set_split:Nnn \l__cv_date_parts_seq { / } { #1 }
+        \int_compare:nNnTF { \seq_count:N \l__cv_date_parts_seq } = { 3 }
+          {
+            \tl_set:Nn \l__cv_date_year_tl  { \seq_item:Nn \l__cv_date_parts_seq { 1 } }
+            \tl_set:Nn \l__cv_date_month_tl { \seq_item:Nn \l__cv_date_parts_seq { 2 } }
+            % Output: Mon YYYY (day ignored)
+            \__cv_month_abbrev:n { \l__cv_date_month_tl }~\l__cv_date_year_tl
+          }
+          {
+            % Not a YYYY/MM/DD triplet -> print as-is
+            #1
+          }
       }
   }
 
