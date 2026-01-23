@@ -43,6 +43,7 @@
 
 \cs_new_protected:Npn \__cv_date_my:n #1
   {
+    % Normalize common "present" variants (case-insensitive) for consistent output
     \str_case:nnF { \tl_lower_case:n { #1 } }
       {
         { present } { Present }
