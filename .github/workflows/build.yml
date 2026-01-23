@@ -31,6 +31,10 @@ on:
         default: 'false'
         type: boolean
 
+# Explicit permissions for security (principle of least privilege)
+permissions:
+  contents: write  # Required for creating releases
+
 jobs:
   build:
     runs-on: ubuntu-latest
