@@ -45,22 +45,21 @@ xelatex main.tex
 ### Job Entries
 
 ```latex
-\job[seniority]{profession}{role}{Company}{City, ST}{start}{end}
-\jobline[...]  % Same as \job, but adds line break
+\job[seniority][role]{profession}{Company}{City, ST}{start}{end}
 ```
 
 ### Education, Certifications, Licenses
 
 ```latex
-\educationline[id][url]{School}{Title}{YYYY/MM/DD}
-\certificationline[id][url]{Issuer}{Title}{YYYY/MM/DD}
-\licenseline[id][url]{Issuer}{Title}{YYYY/MM/DD}
+\education[id][url]{School}{Title}{YYYY/MM/DD}
+\certification[id][url]{Issuer}{Title}{YYYY/MM/DD}
+\license[id][url]{Issuer}{Title}{YYYY/MM/DD}
 ```
 
 ### Skills
 
 ```latex
-\skillline{Category}{skill1, skill2, skill3}
+\skill[Category]{skill1, skill2, skill3}
 ```
 
 ### Links

@@ -78,11 +78,7 @@
   \textbf{\IfValueT{#1}{#1~}#3 @~#4}%
   \role{\IfValueTF{#2}{#2}{}}%
   \joblocation{#5}%
-  \jobdates{#6}{#7}%
-}
-
-\NewDocumentCommand{\jobline}{o o m m m m m}{%
-  \job[#1][#2]{#3}{#4}{#5}{#6}{#7}\\%
+  \jobdates{#6}{#7}\\%
 }
 
 \ExplSyntaxOff
@@ -100,50 +96,33 @@
   \textbf{#4}%
   \IfValueT{#1}{~--~#1:~}#5%
   \IfValueT{#2}{~(\IfValueTF{#3}{\id{#2}[#3]}{\id{#2}})}%
-  \hfill \dateMY{#6}%
+  \hfill \dateMY{#6}\\%
 }
 
 % \education[id][url]{issuer}{title}{date}
-% \educationline...
 \NewDocumentCommand{\education}{o o m m m}{%
   \credential[][#1][#2]{#3}{#4}{#5}%
 }
-\NewDocumentCommand{\educationline}{o o m m m}{%
-  \education[#1][#2]{#3}{#4}{#5}\\%
-}
 
 % \certification[id][url]{issuer}{title}{date}
-% \certificationline...
 \NewDocumentCommand{\certification}{o o m m m}{%
   \credential[Certification][#1][#2]{#3}{#4}{#5}%
 }
-\NewDocumentCommand{\certificationline}{o o m m m}{%
-  \certification[#1][#2]{#3}{#4}{#5}\\%
-}
 
 % \license[id][url]{issuer}{title}{date}
-% \licenseline...
 \NewDocumentCommand{\license}{o o m m m}{%
   \credential[License][#1][#2]{#3}{#4}{#5}%
-}
-\NewDocumentCommand{\licenseline}{o o m m m}{%
-  \license[#1][#2]{#3}{#4}{#5}\\%
 }
 
 % ---- skill entries ----
 % \skill{Title}{arg1, arg2, ..., argn}
-% \skillline... same output, but ends with \\ for one-entry-per-line usage.
 \ExplSyntaxOn
 
 \seq_new:N \l__cv_skill_seq
 \tl_new:N  \l__cv_skill_item_tl
 
 \NewDocumentCommand{\skill}{o m}
-  { \__cv_skill_render:nO { #2 } #1 }
-
-\NewDocumentCommand{\skillline}{o m}{%
-  \skill[#1]{#2}\\%
-}
+  { \__cv_skill_render:nO { #2 } #1\\ }
 
 \cs_new_protected:Npn \__cv_skill_render:nO #1 #2
   {
