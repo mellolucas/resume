@@ -40,21 +40,49 @@
     \seq_use:Nn \l__cv_contact_seq { ~|~ }
   }
 
+\NewDocumentCommand{\contactlink}{m}{%
+  \str_case:nnF { #1 }
+    {
+      { email }    { \linkplain{\email}{mailto:\email} }
+      { linkedin } { \linkplain{linkedin.com/in/\linkedin}{https://linkedin.com/in/\linkedin} }
+      { github }   { \linkplain{github.com/\github}{https://github.com/\github} }
+      { location } { \location }
+    }
+    { \textbf{?? Invalid contact type `#1` ??} }
+}
+
+\NewDocumentCommand{\github}{m m}{%
+  \linkplain{#1}{https://github.com/\github/#2}%
+}
+
 \ExplSyntaxOff
 
 % ---- job entry ----
-% \job[seniority]{profession}{role}{Company}{City, ST}{YYYY/MM/DD}{YYYY/MM/DD|present}
+% \job[seniority][role]{profession}{Company}{City, ST}{YYYY/MM/DD}{YYYY/MM/DD|present}
 % \jobline... same output, but ends with \\ for one-entry-per-line usage.
 \ExplSyntaxOn
 
-\NewDocumentCommand{\job}{o m m m m m m}{%
-  \textbf{\IfValueTF{#1}{#1~#2}{#2}}%
-  \tl_if_blank:nTF {#3}{}{,~#3}~%
-  @~#4~--~#5 \hfill \dateMY{#6}~--~\dateMY{#7}%
+\NewDocumentCommand{\role}{m}{%
+  \tl_if_blank:nF {#1} {~--~{\em #1}}%
 }
 
-\NewDocumentCommand{\jobline}{o m m m m m m}{%
-  \job[#1]{#2}{#3}{#4}{#5}{#6}{#7}\\%
+\NewDocumentCommand{\joblocation}{m}{%
+  ~--~#1%
+}
+
+\NewDocumentCommand{\jobdates}{m m}{%
+  \hfill \dateMY{#1}~--~\dateMY{#2}%
+}
+
+\NewDocumentCommand{\job}{o o m m m m m}{%
+  \textbf{\IfValueT{#1}{#1~}#3 @~#4}%
+  \role{\IfValueTF{#2}{#2}{}}%
+  \joblocation{#5}%
+  \jobdates{#6}{#7}%
+}
+
+\NewDocumentCommand{\jobline}{o o m m m m m}{%
+  \job[#1][#2]{#3}{#4}{#5}{#6}{#7}\\%
 }
 
 \ExplSyntaxOff
@@ -66,37 +94,38 @@
   ID~\IfValueTF{#2}{\linkplain{#1}{#2}}{#1}%
 }
 
-% ---- education entry ----
-% \education[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \educationline... same output, but ends with \\ for one-entry-per-line usage.
-\NewDocumentCommand{\education}{o o m m m}{%
-  \textbf{#3}~--~#4%
-  \IfValueT{#1}{~(\IfValueTF{#2}{\id{#1}[#2]}{\id{#1}})}%
-  \hfill \dateMY{#5}%
+% ---- credential entries ----
+% \credential[prefix][id][url]{issuer}{title}{date}
+\NewDocumentCommand{\credential}{o o o m m m}{%
+  \textbf{#4}%
+  \IfValueT{#1}{~--~#1:~}#5%
+  \IfValueT{#2}{~(\IfValueTF{#3}{\id{#2}[#3]}{\id{#2}})}%
+  \hfill \dateMY{#6}%
 }
 
+% \education[id][url]{issuer}{title}{date}
+% \educationline...
+\NewDocumentCommand{\education}{o o m m m}{%
+  \credential[][#1][#2]{#3}{#4}{#5}%
+}
 \NewDocumentCommand{\educationline}{o o m m m}{%
   \education[#1][#2]{#3}{#4}{#5}\\%
 }
 
-% ---- certification entry ----
-% \certification[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \certificationline... same output, but ends with \\ for one-entry-per-line usage.
+% \certification[id][url]{issuer}{title}{date}
+% \certificationline...
 \NewDocumentCommand{\certification}{o o m m m}{%
-  \education[#1][#2]{#3}{Certification:~#4}{#5}%
+  \credential[Certification][#1][#2]{#3}{#4}{#5}%
 }
-
 \NewDocumentCommand{\certificationline}{o o m m m}{%
   \certification[#1][#2]{#3}{#4}{#5}\\%
 }
 
-% ---- license entry ----
-% \license[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \licenseline... same output, but ends with \\ for one-entry-per-line usage
+% \license[id][url]{issuer}{title}{date}
+% \licenseline...
 \NewDocumentCommand{\license}{o o m m m}{%
-  \education[#1][#2]{#3}{License:~#4}{#5}%
+  \credential[License][#1][#2]{#3}{#4}{#5}%
 }
-
 \NewDocumentCommand{\licenseline}{o o m m m}{%
   \license[#1][#2]{#3}{#4}{#5}\\%
 }
@@ -109,19 +138,19 @@
 \seq_new:N \l__cv_skill_seq
 \tl_new:N  \l__cv_skill_item_tl
 
-\NewDocumentCommand{\skill}{m m}
-  { \__cv_skill_render:nn { #1 } { #2 } }
+\NewDocumentCommand{\skill}{o m}
+  { \__cv_skill_render:nO { #2 } #1 }
 
-\NewDocumentCommand{\skillline}{m m}{%
-  \skill{#1}{#2}\\%
+\NewDocumentCommand{\skillline}{o m}{%
+  \skill[#1]{#2}\\%
 }
 
-\cs_new_protected:Npn \__cv_skill_render:nn #1 #2
+\cs_new_protected:Npn \__cv_skill_render:nO #1 #2
   {
     \seq_clear:N \l__cv_skill_seq
 
     % Split list on commas, trim each item, drop empties
-    \clist_map_inline:nn { #2 }
+    \clist_map_inline:nn { #1 }
       {
         \tl_set:Nn \l__cv_skill_item_tl { ##1 }
         \tl_trim_spaces:N \l__cv_skill_item_tl
@@ -133,7 +162,9 @@
 
     % Only print if at least one item exists
     \seq_if_empty:NF \l__cv_skill_seq
-      { \textbf{#1:}~\seq_use:Nn \l__cv_skill_seq { ,~ } }
+      {
+        \IfValueT{#2}{\textbf{#2:}~}\seq_use:Nn \l__cv_skill_seq { ,~ }
+      }
   }
 
 \ExplSyntaxOff
