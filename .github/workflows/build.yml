@@ -8,7 +8,6 @@
 #
 # Best practices:
 #   - Uses official xu-cheng/latex-action for reliable LaTeX compilation
-#   - Caches TeX Live packages for faster builds
 #   - Generates both artifact (for PRs) and release (for tagged versions)
 #
 
