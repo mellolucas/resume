@@ -61,16 +61,16 @@ Always use `YYYY/MM/DD` format:
 \job[Seniority]{Title}{Role}{Company}{Location}{YYYY/MM/DD}{YYYY/MM/DD|present}
 
 % Education
-\educationline[id][url]{School}{Degree}{YYYY/MM/DD}
+\education[id][url]{School}{Degree}{YYYY/MM/DD}
 
 % Certifications
-\certificationline[id][url]{Issuer}{Title}{YYYY/MM/DD}
+\certification[id][url]{Issuer}{Title}{YYYY/MM/DD}
 
 % Licenses
-\licenseline[id][url]{Issuer}{Title}{YYYY/MM/DD}
+\license[id][url]{Issuer}{Title}{YYYY/MM/DD}
 
 % Skills
-\skillline{Category}{skill1, skill2, skill3}
+\skill{Category}{skill1, skill2, skill3}
 
 % Links
 \link{visible text}{url}           % Underlined

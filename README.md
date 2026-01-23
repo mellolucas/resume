@@ -105,7 +105,6 @@ In `main.tex`, you can customize:
 
 ```latex
 \job[seniority]{profession}{role}{Company}{City, ST}{start}{end}
-\jobline[...]  % Same as \job, but adds line break
 
 % Examples:
 \job[Senior]{Software Engineer}{DevOps Platform}{Acme Corp}{Austin, TX}{2024/01/15}{present}
@@ -121,17 +120,19 @@ In `main.tex`, you can customize:
 - `{start}`: Start date in YYYY/MM/DD format
 - `{end}`: End date in YYYY/MM/DD format or "present"
 
+**Note**: Does not add a line break. Follow with `\vspace{-9pt}` and `\begin{itemize}` for bullet points.
+
 ### Education, Certifications, Licenses
 
 ```latex
-\educationline[id][url]{School}{Title}{YYYY/MM/DD}
-\certificationline[id][url]{Issuer}{Title}{YYYY/MM/DD}
-\licenseline[id][url]{Issuer}{Title}{YYYY/MM/DD}
+\education[id][url]{School}{Title}{YYYY/MM/DD}
+\certification[id][url]{Issuer}{Title}{YYYY/MM/DD}
+\license[id][url]{Issuer}{Title}{YYYY/MM/DD}
 
 % Examples:
-\educationline{University of Texas}{B.S. Computer Science}{2020/05/15}
-\certificationline[ABC123][https://verify.com]{AWS}{Solutions Architect}{2024/03/20}
-\licenseline[12345][https://lookup.gov]{State Board}{Professional Engineer}{2023/06/01}
+\education{University of Texas}{B.S. Computer Science}{2020/05/15}
+\certification[ABC123][https://verify.com]{AWS}{Solutions Architect}{2024/03/20}
+\license[12345][https://lookup.gov]{State Board}{Professional Engineer}{2023/06/01}
 ```
 
 **Parameters**:
@@ -141,17 +142,19 @@ In `main.tex`, you can customize:
 - `{Title}`: Degree, certification, or license title
 - `{date}`: Completion/issue date in YYYY/MM/DD format
 
+**Note**: Automatically adds line breaks for list formatting.
+
 ### Skills
 
 ```latex
-\skillline{Category}{skill1, skill2, skill3}
+\skill{Category}{skill1, skill2, skill3}
 
 % Example:
-\skillline{Programming Languages}{Python, JavaScript, Go, Rust}
-\skillline{Cloud Platforms}{AWS, Azure, GCP}
+\skill{Programming Languages}{Python, JavaScript, Go, Rust}
+\skill{Cloud Platforms}{AWS, Azure, GCP}
 ```
 
-**Note**: Empty items are automatically filtered out, and whitespace is trimmed.
+**Note**: Empty items are automatically filtered out, whitespace is trimmed, and line breaks are added automatically.
 
 ### Links
 
