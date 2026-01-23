@@ -1,4 +1,58 @@
-% ---------- helpers ----------
+% ---------- helpers.tex ----------
+
+% ---- fonts and encoding ----
+% Automatically selects the best available professional font.
+%
+% For LuaLaTeX/XeLaTeX (modern compilers):
+%   - Tries a preferred list of fonts (XCharter, Libertinus Serif, etc.).
+%   - Falls back gracefully to the default if none are found.
+%
+% For pdfLaTeX (legacy compiler):
+%   - Uses standard font packages for compatibility.
+%
+\ifPDFTeX
+  % ---- pdfLaTeX Font Setup ----
+  \usepackage[T1]{fontenc}          % font encoding
+  \usepackage[utf8]{inputenc}       % input encoding
+  \usepackage{XCharter}             % preferred font (or use libertine, lmodern)
+\else
+  % ---- LuaLaTeX/XeLaTeX Font Setup ----
+  \usepackage{fontspec}             % enable font selection
+
+  % Expl3: define variables for font selection logic
+  \ExplSyntaxOn
+  \seq_new:N \l__cv_font_candidates_seq
+  \bool_new:N \l__cv_font_found_bool
+
+  % \setmainfontfallback{Font 1, Font 2, ...}
+  % Tries to set the main font from a comma-separated list of candidates.
+  % Stops at the first font found on the system.
+  \NewDocumentCommand{\setmainfontfallback}{m}{
+    \seq_set_from_clist:Nn \l__cv_font_candidates_seq { #1 }
+    \bool_set_false:N \l__cv_font_found_bool
+
+    % Iterate through candidates until one is found
+    \seq_map_inline:Nn \l__cv_font_candidates_seq {
+      \bool_if:NF \l__cv_font_found_bool {
+        \suppressfontnotfounderror=1\relax
+        \IfFontExistsTF{##1}{
+          \setmainfont{##1}
+          \bool_set_true:N \l__cv_font_found_bool
+          \typeout{Font~found:~'##1'}
+        }{}
+      }
+    }
+    % Fallback message if no fonts were found
+    \bool_if:NF \l__cv_font_found_bool {
+      \typeout{No~preferred~fonts~found.~Using~default.}
+    }
+  }
+  \ExplSyntaxOff
+
+  % Set main font from the list of preferred candidates
+  \setmainfontfallback{XCharter, Libertinus Serif, Charis SIL}
+\fi
+
 %
 % This file defines small, reusable helpers used by the resume commands.
 % It assumes core packages are loaded by main.tex (e.g., xparse, hyperref).
