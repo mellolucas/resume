@@ -2,12 +2,20 @@
 %
 % Public, document-facing commands used by the resume sections.
 % Base commands do NOT force a line break; *line variants do.
+%
+% Best practices:
+% - All commands use expl3 (LaTeX3) syntax for robust text processing
+% - Comma-separated lists are properly parsed and trimmed
+% - Empty/blank items are automatically filtered out
+% - Uses dedicated variables with \l__cv_ prefix to avoid naming conflicts
 
 
 % ---- contact info line ----
 % Usage:
-% \contactinfo{ \contactentry{...}{...}, \contactentry{...}{...}, ... }
+% \contactinfo{ \contactentry{text}{url}, \contactentry{text}{url}, ... }
 % Output: entry1 | entry2 | entry3   (with consistent spacing)
+%
+% Note: Automatically filters empty entries and trims whitespace
 
 \ExplSyntaxOn
 
@@ -45,6 +53,16 @@
 % ---- job entry ----
 % \job[seniority]{profession}{role}{Company}{City, ST}{YYYY/MM/DD}{YYYY/MM/DD|present}
 % \jobline... same output, but ends with \\ for one-entry-per-line usage.
+%
+% Parameters:
+%   [seniority] - Optional prefix like "Senior" or "Lead"
+%   {profession} - Job title, e.g., "Software Engineer"
+%   {role} - Specific role/team, can be empty
+%   {Company} - Company name
+%   {City, ST} - Location
+%   {start date} - In YYYY/MM/DD format
+%   {end date} - In YYYY/MM/DD format or "present"
+%
 \ExplSyntaxOn
 
 \NewDocumentCommand{\job}{o m m m m m m}{%
@@ -60,8 +78,9 @@
 \ExplSyntaxOff
 
 % ---- credential id ----
-% \id{00000}
-% \id{00000}[https://url.com]
+% \id{credential-id}
+% \id{credential-id}[url]
+% Displays "ID credential-id" with optional hyperlink
 \NewDocumentCommand{\id}{m o}{%
   ID~\IfValueTF{#2}{\linkplain{#1}{#2}}{#1}%
 }
@@ -69,6 +88,14 @@
 % ---- education entry ----
 % \education[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
 % \educationline... same output, but ends with \\ for one-entry-per-line usage.
+%
+% Parameters:
+%   [credential-id] - Optional credential/certificate ID
+%   [url] - Optional verification URL (requires credential-id)
+%   {Issuer} - Institution/organization name
+%   {Title} - Degree/certificate title
+%   {date} - Completion date in YYYY/MM/DD format
+%
 \NewDocumentCommand{\education}{o o m m m}{%
   \textbf{#3}~--~#4%
   \IfValueT{#1}{~(\IfValueTF{#2}{\id{#1}[#2]}{\id{#1}})}%
@@ -82,6 +109,9 @@
 % ---- certification entry ----
 % \certification[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
 % \certificationline... same output, but ends with \\ for one-entry-per-line usage.
+%
+% Note: Automatically prefixes title with "Certification:"
+%
 \NewDocumentCommand{\certification}{o o m m m}{%
   \education[#1][#2]{#3}{Certification:~#4}{#5}%
 }
@@ -93,6 +123,9 @@
 % ---- license entry ----
 % \license[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
 % \licenseline... same output, but ends with \\ for one-entry-per-line usage
+%
+% Note: Automatically prefixes title with "License:"
+%
 \NewDocumentCommand{\license}{o o m m m}{%
   \education[#1][#2]{#3}{License:~#4}{#5}%
 }
@@ -102,8 +135,15 @@
 }
 
 % ---- skill entries ----
-% \skill{Title}{arg1, arg2, ..., argn}
+% \skill{Category}{skill1, skill2, ..., skillN}
 % \skillline... same output, but ends with \\ for one-entry-per-line usage.
+%
+% Parameters:
+%   {Category} - Skill category name (e.g., "Programming Languages")
+%   {skills} - Comma-separated list of skills
+%
+% Note: Empty items are filtered out, whitespace is trimmed
+%
 \ExplSyntaxOn
 
 \seq_new:N \l__cv_skill_seq
