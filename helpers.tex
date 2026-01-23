@@ -19,6 +19,14 @@
 }
 \ExplSyntaxOff
 
+% \nolinkurl{url}
+% Prints a URL without creating a hyperlink.
+\ExplSyntaxOn
+\NewDocumentCommand{\nolinkurl}{m}{%
+  #1%
+}
+\ExplSyntaxOff
+
 % ---- date formatting (YYYY/MM/DD -> Mon YYYY) ----
 \ExplSyntaxOn
 
