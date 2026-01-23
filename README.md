@@ -2,6 +2,13 @@
 
 A modular LaTeX resume template with custom commands for consistent formatting.
 
+## Features
+
+- **ATS-Friendly**: Single-column layout, standard fonts, and machine-readable PDF output
+- **Modular Structure**: Separate files for each section, easy to customize
+- **CI/CD Ready**: GitHub Actions workflow for automated PDF builds
+- **DevContainer Support**: Ready-to-use development environment with LaTeX tooling
+
 ## Structure
 
 ```text
@@ -10,6 +17,7 @@ A modular LaTeX resume template with custom commands for consistent formatting.
 ├── constants.tex         # User-configurable values (name, contact info)
 ├── helpers.tex           # Low-level utilities (links, date formatting)
 ├── functions.tex         # High-level commands (job, education, skills)
+├── .latexmkrc            # Latexmk build configuration
 └── sections/
     ├── contact.tex       # Header with name and contact links
     ├── summary.tex       # Professional summary
@@ -22,16 +30,44 @@ A modular LaTeX resume template with custom commands for consistent formatting.
 
 ## Building
 
-Compile with any LaTeX engine:
+### Using Latexmk (Recommended)
 
 ```bash
-# pdfLaTeX (default)
+# Build PDF (uses XeLaTeX via .latexmkrc)
+latexmk main.tex
+
+# Clean auxiliary files
+latexmk -c
+```
+
+### Using LaTeX Directly
+
+```bash
+# XeLaTeX (recommended for Unicode and font support)
+xelatex main.tex
+
+# pdfLaTeX (faster, less font flexibility)
 pdflatex main.tex
 
-# LuaLaTeX or XeLaTeX (for advanced font features)
+# LuaLaTeX (alternative to XeLaTeX)
 lualatex main.tex
-xelatex main.tex
 ```
+
+### Using DevContainer
+
+1. Open the repository in VS Code with the Dev Containers extension
+2. Click "Reopen in Container" when prompted
+3. Edit any `.tex` file and save - the PDF will build automatically
+4. View the PDF in the VS Code tab that opens
+
+### Using GitHub Actions
+
+The repository includes a GitHub Actions workflow that:
+
+- Triggers on push to `main` (when `.tex` files change)
+- Compiles the resume using XeLaTeX
+- Uploads the PDF as a workflow artifact
+- Commits the PDF back to the repository
 
 ## Customization
 

@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+#
+# Build and publish LaTeX resume as PDF
+#
+# Triggers:
+#   - Push to main branch (tex files only)
+#   - Manual workflow dispatch
+#
+# Outputs:
+#   - PDF artifact available in Actions tab
+#   - PDF committed back to repository (optional, on main)
+#
+
+name: Build Resume PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*.tex"
+      - "sections/**/*.tex"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX to PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          latexmk_use_xelatex: true
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Rename output PDF
+        run: mv main.pdf resume.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume
+          path: resume.pdf
+          retention-days: 90
+
+      - name: Commit PDF to repository
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "build: update compiled resume PDF"
+          file_pattern: resume.pdf
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
