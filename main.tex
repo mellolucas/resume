@@ -9,41 +9,25 @@
 % ---- document class ----
 \documentclass[11pt]{article}       % set main text size
 
-% ---- packages ----
-% Core packages for document structure
-\usepackage{import}                 % enable import package for modular file structure
-\usepackage{xparse}                 % enable xparse for advanced command definitions
-
-% Page layout
-\usepackage[letterpaper,            % set paper size (use a4paper for resumes outside North America)
-top=0.5in,                          % specify top page margin
-bottom=0.5in,                       % specify bottom page margin
-left=0.5in,                         % specify left page margin
-right=0.5in]{geometry}              % specify right page margin
-                       
-% ---- fonts and encoding ----
-% XCharter: professional serif font, good for print resumes
-% Note: Available by default in Overleaf. For local compilation, install via TeX Live.
-% Alternative fonts: \usepackage{libertine}, \usepackage{lmodern}, or comment out for Computer Modern
-\usepackage{XCharter}               % set font (comment out to use default Computer Modern)
-\usepackage{iftex}                  % detect LaTeX engine for conditional loading
-
-\ifPDFTeX
-  \usepackage[T1]{fontenc}          % font encoding for pdfLaTeX
-  \usepackage[utf8]{inputenc}       % input encoding for pdfLaTeX
-\else
-  \usepackage{fontspec}             % font selection for LuaLaTeX/XeLaTeX
-\fi
-
-% ---- typography and formatting ----
-\usepackage{microtype}              % enable micro-typographic enhancements
-\usepackage{enumitem}               % enable lists for bullet points: itemize and \item
-\usepackage{titlesec}               % enable section title customization
-\usepackage[hidelinks]{hyperref}    % format hyperlinks without visible borders
+% ---- core packages ----
+\usepackage{import}                 % modular file structure
+\usepackage{xparse}                 % advanced command definitions
+\usepackage{iftex}                  % engine detection for conditional loading
 
 % ---- page layout ----
-\raggedright                        % disable text justification
+\usepackage[letterpaper,            % paper size
+            top=0.5in,              % top page margin
+            bottom=0.5in,           % bottom page margin
+            left=0.5in,             % left page margin
+            right=0.5in]{geometry}  % right page margin
 \pagestyle{empty}                   % disable page numbering
+\raggedright                        % disable text justification
+
+% ---- typography and formatting ----
+\usepackage{microtype}              % micro-typographic enhancements
+\usepackage{enumitem}               % list customization (bullet points)
+\usepackage{titlesec}               % section title customization
+\usepackage[hidelinks]{hyperref}    % hyperlinks without visible borders
 
 % ---- PDF accessibility (pdfLaTeX only) ----
 % Ensure PDF output is Unicode-compliant and machine-readable (ATS-friendly)
@@ -51,15 +35,6 @@ right=0.5in]{geometry}              % specify right page margin
   \input{glyphtounicode}
   \pdfgentounicode=1
 \fi
-
-% ---- section headings ----
-% Format: bold, large, with horizontal rule below
-\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
-
-% ---- bullet points ----
-% Format: small bullets, compact spacing
-\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
-\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt}
 
 % ---- load commands ----
 % Import constants, helpers, and functions
@@ -72,24 +47,24 @@ right=0.5in]{geometry}              % specify right page margin
 
 % ---- contact header ----
 \import{sections/}{contact.tex}
-\vspace{-10pt}
+\aftercontactspace
 
 % ---- summary ----
 \import{sections/}{summary.tex}
-\vspace{-6.5pt}
+\aftersectionspace
 
 % ---- skills ----
 \import{sections/}{skills.tex}
-\vspace{-6.5pt}
+\aftersectionspace
 
 % ---- experience ----
 \import{sections/}{experience.tex}
-\vspace{-18.5pt}
+\aftersectionwithextraspace
 
 % ---- projects (optional) ----
 % Uncomment to include projects section
 % \import{sections/}{projects.tex}
-% \vspace{-18.5pt}
+% \aftersectionwithextraspace
 
 % ---- education ----
 \import{sections/}{education.tex}

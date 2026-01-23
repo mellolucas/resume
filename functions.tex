@@ -1,20 +1,20 @@
-% ---------- functions ----------
+% ---------- functions.tex ----------
 %
 % Public, document-facing commands used by the resume sections.
-% Base commands do NOT force a line break; *line variants do.
+% Commands with a '*' suffix automatically append a line break.
 %
 % Best practices:
-% - All commands use expl3 (LaTeX3) syntax for robust text processing
-% - Comma-separated lists are properly parsed and trimmed
-% - Empty/blank items are automatically filtered out
-% - Uses dedicated variables with \l__cv_ prefix to avoid naming conflicts
+% - All commands use expl3 (LaTeX3) for robust text processing.
+% - Comma-separated lists are parsed and trimmed automatically.
+% - Empty/blank items are filtered out to prevent formatting errors.
+% - Uses dedicated variables with \l__cv_ prefix to avoid naming conflicts.
 
 % ---- contact info line ----
 % Usage:
 % \contactinfo{ \contactentry{text}{url}, \contactentry{text}{url}, ... }
 % Output: entry1 | entry2 | entry3   (with consistent spacing)
 %
-% Note: Automatically filters empty entries and trims whitespace
+% Note: Automatically filters empty entries and trims whitespace.
 \ExplSyntaxOn
 
 \seq_new:N \l__cv_contact_seq
@@ -24,33 +24,31 @@
   \linkplain{#1}{#2}%
 }
 
-\NewDocumentCommand{\contactinfo}{m}
-  { \__cv_contactinfo:n { #1 } }
+\NewDocumentCommand{\contactinfo}{m}{
+  \__cv_contactinfo:n { #1 }
+}
 
-\cs_new_protected:Npn \__cv_contactinfo:n #1
-  {
-    \seq_clear:N \l__cv_contact_seq
+\cs_new_protected:Npn \__cv_contactinfo:n #1 {
+  \seq_clear:N \l__cv_contact_seq
 
-    % Split on commas, trim items, drop empties
-    \clist_map_inline:nn { #1 }
-      {
-        \tl_set:Nn \l__cv_contact_item_tl { ##1 }
-        \tl_trim_spaces:N \l__cv_contact_item_tl
+  % Split on commas, trim items, drop empties
+  \clist_map_inline:nn { #1 } {
+    \tl_set:Nn \l__cv_contact_item_tl { ##1 }
+    \tl_trim_spaces:N \l__cv_contact_item_tl
 
-        \tl_if_blank:VTF \l__cv_contact_item_tl
-          { }
-          { \seq_put_right:NV \l__cv_contact_seq \l__cv_contact_item_tl }
-      }
-
-    % Join with a consistent separator and spacing
-    \seq_use:Nn \l__cv_contact_seq { ~|~ }
+    \tl_if_blank:VTF \l__cv_contact_item_tl
+      { }
+      { \seq_put_right:NV \l__cv_contact_seq \l__cv_contact_item_tl }
   }
 
+  % Join with a consistent separator and spacing
+  \seq_use:Nn \l__cv_contact_seq { ~|~ }
+}
 \ExplSyntaxOff
 
 % ---- job entry ----
-% \job[seniority]{profession}{role}{Company}{City, ST}{YYYY/MM/DD}{YYYY/MM/DD|present}
-% \jobline... same output, but ends with \\ for one-entry-per-line usage.
+% \job*[seniority]{profession}{role}{Company}{City, ST}{YYYY/MM/DD}{YYYY/MM/DD|present}
+% '*' adds a line break at the end.
 %
 % Parameters:
 %   [seniority] - Optional prefix like "Senior" or "Lead"
@@ -60,118 +58,91 @@
 %   {City, ST} - Location
 %   {start date} - In YYYY/MM/DD format
 %   {end date} - In YYYY/MM/DD format or "present"
-%
 \ExplSyntaxOn
-
-\NewDocumentCommand{\job}{o m m m m m m}{%
-  \textbf{\IfValueTF{#1}{#1~#2}{#2}}%
-  \tl_if_blank:nTF {#3}{}{,~#3}~%
-  @~#4~--~#5 \hfill \dateMY{#6}~--~\dateMY{#7}%
+\NewDocumentCommand{\job}{s o m m m m m m}{
+  \textbf{\IfValueTF{#2}{#2~#3}{#3}}%
+  \tl_if_blank:nTF {#4}{}{,~#4}~%
+  @~#5~--~#6 \hfill \dateMY{#7}~--~\dateMY{#8}%
+  \IfBooleanT{#1}{\\}%
 }
-
-\NewDocumentCommand{\jobline}{o m m m m m m}{%
-  \job[#1]{#2}{#3}{#4}{#5}{#6}{#7}\\%
-}
-
 \ExplSyntaxOff
 
 % ---- credential id ----
-% \id{credential-id}
 % \id{credential-id}[url]
-% Displays "ID credential-id" with optional hyperlink
-\NewDocumentCommand{\id}{m o}{%
+% Displays "ID credential-id" with an optional hyperlink.
+\NewDocumentCommand{\id}{m o}{
   ID~\IfValueTF{#2}{\linkplain{#1}{#2}}{#1}%
 }
 
 % ---- education entry ----
-% \education[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \educationline... same output, but ends with \\ for one-entry-per-line usage.
+% \education*[id][url]{Issuer}{Title}{YYYY/MM/DD}
+% '*' adds a line break at the end.
 %
 % Parameters:
-%   [credential-id] - Optional credential/certificate ID
-%   [url] - Optional verification URL (requires credential-id)
+%   [id] - Optional credential/certificate ID
+%   [url] - Optional verification URL (requires id)
 %   {Issuer} - Institution/organization name
 %   {Title} - Degree/certificate title
 %   {date} - Completion date in YYYY/MM/DD format
-%
-\NewDocumentCommand{\education}{o o m m m}{%
-  \textbf{#3}~--~#4%
-  \IfValueT{#1}{~(\IfValueTF{#2}{\id{#1}[#2]}{\id{#1}})}%
-  \hfill \dateMY{#5}%
-}
-
-\NewDocumentCommand{\educationline}{o o m m m}{%
-  \education[#1][#2]{#3}{#4}{#5}\\%
+\NewDocumentCommand{\education}{s o o m m m}{
+  \textbf{#4}~--~#5%
+  \IfValueT{#2}{~(\IfValueTF{#3}{\id{#2}[#3]}{\id{#2}})}%
+  \hfill \dateMY{#6}%
+  \IfBooleanT{#1}{\\}%
 }
 
 % ---- certification entry ----
-% \certification[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \certificationline... same output, but ends with \\ for one-entry-per-line usage.
-%
+% \certification*[id][url]{Issuer}{Title}{YYYY/MM/DD}
+% '*' adds a line break at the end.
 % Note: Automatically prefixes title with "Certification:"
-%
-\NewDocumentCommand{\certification}{o o m m m}{%
-  \education[#1][#2]{#3}{Certification:~#4}{#5}%
-}
-
-\NewDocumentCommand{\certificationline}{o o m m m}{%
-  \certification[#1][#2]{#3}{#4}{#5}\\%
+\NewDocumentCommand{\certification}{s o o m m m}{
+  \education[#2][#3]{#4}{Certification:~#5}{#6}%
+  \IfBooleanT{#1}{\\}%
 }
 
 % ---- license entry ----
-% \license[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \licenseline... same output, but ends with \\ for one-entry-per-line usage
-%
+% \license*[id][url]{Issuer}{Title}{YYYY/MM/DD}
+% '*' adds a line break at the end.
 % Note: Automatically prefixes title with "License:"
-%
-\NewDocumentCommand{\license}{o o m m m}{%
-  \education[#1][#2]{#3}{License:~#4}{#5}%
-}
-
-\NewDocumentCommand{\licenseline}{o o m m m}{%
-  \license[#1][#2]{#3}{#4}{#5}\\%
+\NewDocumentCommand{\license}{s o o m m m}{
+  \education[#2][#3]{#4}{License:~#5}{#6}%
+  \IfBooleanT{#1}{\\}%
 }
 
 % ---- skill entries ----
-% \skill{Category}{skill1, skill2, ..., skillN}
-% \skillline... same output, but ends with \\ for one-entry-per-line usage.
+% \skill*{Category}{skill1, skill2, ..., skillN}
+% '*' adds a line break at the end.
 %
 % Parameters:
 %   {Category} - Skill category name (e.g., "Programming Languages")
 %   {skills} - Comma-separated list of skills
 %
-% Note: Empty items are filtered out, whitespace is trimmed
-%
+% Note: Empty items are filtered out, and whitespace is trimmed.
 \ExplSyntaxOn
 
 \seq_new:N \l__cv_skill_seq
 \tl_new:N  \l__cv_skill_item_tl
 
-\NewDocumentCommand{\skill}{m m}
-  { \__cv_skill_render:nn { #1 } { #2 } }
-
-\NewDocumentCommand{\skillline}{m m}{%
-  \skill{#1}{#2}\\%
+\NewDocumentCommand{\skill}{s m m}{
+  \__cv_skill_render:nn { #2 } { #3 }
+  \IfBooleanT{#1}{\\}%
 }
 
-\cs_new_protected:Npn \__cv_skill_render:nn #1 #2
-  {
-    \seq_clear:N \l__cv_skill_seq
+\cs_new_protected:Npn \__cv_skill_render:nn #1 #2 {
+  \seq_clear:N \l__cv_skill_seq
 
-    % Split list on commas, trim each item, drop empties
-    \clist_map_inline:nn { #2 }
-      {
-        \tl_set:Nn \l__cv_skill_item_tl { ##1 }
-        \tl_trim_spaces:N \l__cv_skill_item_tl
+  % Split list on commas, trim each item, drop empties
+  \clist_map_inline:nn { #2 } {
+    \tl_set:Nn \l__cv_skill_item_tl { ##1 }
+    \tl_trim_spaces:N \l__cv_skill_item_tl
 
-        \tl_if_blank:VTF \l__cv_skill_item_tl
-          { }% blank -> ignore
-          { \seq_put_right:NV \l__cv_skill_seq \l__cv_skill_item_tl }
-      }
-
-    % Only print if at least one item exists
-    \seq_if_empty:NF \l__cv_skill_seq
-      { \textbf{#1:}~\seq_use:Nn \l__cv_skill_seq { ,~ } }
+    \tl_if_blank:VTF \l__cv_skill_item_tl
+      { } % blank -> ignore
+      { \seq_put_right:NV \l__cv_skill_seq \l__cv_skill_item_tl }
   }
 
+  % Only print if at least one item exists
+  \seq_if_empty:NF \l__cv_skill_seq
+    { \textbf{#1:}~\seq_use:Nn \l__cv_skill_seq { ,~ } }
+}
 \ExplSyntaxOff

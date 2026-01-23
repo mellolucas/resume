@@ -1,0 +1,29 @@
+% ---------- layout.tex ----------
+%
+% This file centralizes all layout, spacing, and formatting commands.
+%
+
+% ---- spacing ----
+% Standard vertical spacing commands to ensure a consistent layout.
+% These replace hardcoded \vspace commands in the main document.
+
+% Space after the contact section
+\newcommand{\aftercontactspace}{\vspace{-10pt}}
+
+% Standard space after a section
+\newcommand{\aftersectionspace}{\vspace{-6.5pt}}
+
+% Extra space after sections with bullet points (e.g., experience)
+\newcommand{\aftersectionwithextraspace}{\vspace{-18.5pt}}
+
+% Space before a list of bullet points in an experience entry
+\newcommand{\beforebulletspace}{\vspace{-9pt}}
+
+% ---- section headings ----
+% Format: bold, large, with horizontal rule below
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
+
+% ---- bullet points ----
+% Format: small bullets, compact spacing
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt}

@@ -13,10 +13,11 @@
 %
 
 % Job command syntax:
-% \job[seniority]{profession}{role}{Company}{City, ST}{start date}{end date}
+% \job*[seniority]{profession}{role}{Company}{City, ST}{start date}{end date}
 %
 % Parameters:
-%   [seniority] - Optional: "Senior", "Lead", "Principal", etc. (omit brackets if not used)
+%   * - Optional: adds a line break (for entries with bullet points)
+%   [seniority] - Optional: "Senior", "Lead", "Principal", etc.
 %   {profession} - Required: "Software Engineer", "Product Manager", etc.
 %   {role} - Required: Team/department name, or empty {} if not applicable
 %   {Company} - Required: Company name
@@ -24,11 +25,10 @@
 %   {start date} - Required: YYYY/MM/DD format (e.g., 2024/03/15)
 %   {end date} - Required: YYYY/MM/DD format or "present"
 
-\job[Senior]{Software Engineer}{Platform Engineering}{Company Name}{City, ST}{2026/01/01}{present}
+\job*[Senior]{Software Engineer}{Platform Engineering}{Company Name}{City, ST}{2026/01/01}{present}
 
-% Adjust spacing before bullet points
-% -9pt is standard; use -7pt for more space, -11pt for less
-\vspace{-9pt}
+% Adjust spacing before bullet points (defined in layout.tex)
+\beforebulletspace
 
 % Bullet points: 3-5 achievements with measurable impact
 % Start with action verbs: Built, Designed, Led, Implemented, Architected
