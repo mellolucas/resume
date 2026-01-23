@@ -2,10 +2,16 @@
 %
 % This file defines small, reusable helpers used by the resume commands.
 % It assumes core packages are loaded by main.tex (e.g., xparse, hyperref).
+%
+% Best practices:
+% - Uses expl3 (LaTeX3) syntax for robust string and list processing
+% - Properly scoped variables with \l__cv_ prefix to avoid conflicts
+% - URL handling via \tl_to_str:e to avoid manual escaping
 
 % ---- hyperlink ----
 % \link{visible text}{url}
-% Uses \detokenize to avoid having to escape underscores and other URL chars.
+% Creates an underlined hyperlink. Uses \detokenize via expl3 to avoid 
+% having to escape underscores and other special URL characters.
 \ExplSyntaxOn
 \NewDocumentCommand{\link}{m m}{%
   \href{\tl_to_str:e { #2 }}{\underline{#1}}%
@@ -13,6 +19,7 @@
 \ExplSyntaxOff
 
 % \linkplain{visible text}{url}
+% Creates a plain (non-underlined) hyperlink
 \ExplSyntaxOn
 \NewDocumentCommand{\linkplain}{m m}{%
   \href{\tl_to_str:e { #2 }}{#1}%
@@ -20,6 +27,8 @@
 \ExplSyntaxOff
 
 % ---- date formatting (YYYY/MM/DD -> Mon YYYY) ----
+% Converts date strings like "2026/01/15" to "Jan 2026" format
+% If input is not in YYYY/MM/DD form (e.g., "present"), prints it as-is
 \ExplSyntaxOn
 
 % Dedicated scratch vars (avoid relying on \l_tmpa_* across multiple helpers)
@@ -48,6 +57,7 @@
       }
   }
 
+% Convert month number to 3-letter abbreviation
 \cs_new:Npn \__cv_month_abbrev:n #1
   {
     \int_case:nnF { \int_eval:n {#1} }
