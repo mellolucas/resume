@@ -22,12 +22,29 @@ A modular LaTeX resume template with custom commands for consistent formatting a
 2. At the creation prompt, after reviewing the pre-filled details, click on `Create repository` at the bottom of the page.
 3. Wait until [GitHub Actions](/../../actions/workflows/_repo-self-setup.yaml) set things up for you (takes less than a minute! Refresh the page to check the status)
 4. Open your project in your editor of choice:
-   - [Spin-up a Codespace](https://codespaces.new/mellolucas/resume) and start coding right away in a full-featured development environment tailored to your needs
-   - [Open in GitHub.dev Web Editor](https://github.dev/mellolucas/resume) if you prefer a lightweight browser-based quick editing experience
-   - [Clone locally with VS Code](vscode://vscode.git/clone?url=https://github.com/mellolucas/resume) to work offline from your good-old and trusty IDE
-   - [Clone locally with VS Code Insiders](vscode-insiders://vscode.git/clone?url=https://github.com/mellolucas/resume) to work offline from your goot no-old and oftentimes-trusty IDE
-   - [Download as ZIP](/../../archive/refs/heads/main.zip) and upload to [Overleaf](https://www.overleaf.com/) if you just don't want the hassle. If versioning is not your thing, you could just skip the whole GitHub part and download mine and go live your best life... who needs version control anyway? Yeah, c'mon! To live is to risk it all! Otherwise you’re just an inert chunk of randomly assembled molecules drifting wherever the universe blows you!!
+   - [![Spin-up a Codespace](https://img.shields.io/badge/Codespace-_?style=flat&logo=github&label=Spin-up%20a&labelColor=2f363d&color=24292e)](https://codespaces.new/mellolucas/resume?quickstart=1) and start coding right away in a full-featured development environment tailored to your needs
+   - [![Open in GitHub.dev Web Editor](https://img.shields.io/badge/GitHub.dev-_?style=flat&logo=refinedgithub&logoColor=white&label=Open%20in&labelColor=2f363d&color=24292e)](https://github.dev/mellolucas/resume) if you prefer a lightweight browser-based quick editing experience
+   - [![Clone locally with VS Code](https://img.shields.io/badge/Clone_with-VS_Code-0098FF.svg?style=flat&logo=git&logoColor=white)](vscode://vscode.git/clone?url=https://github.com/mellolucas/resume) to work offline from your good-old and trusty IDE
+   - [![Clone locally with VS Code Insiders](https://img.shields.io/badge/Clone_with-VS_Code_Insiders-24bfa5.svg?style=flat&logo=gitforwindows&logoColor=white)](vscode-insiders://vscode.git/clone?url=https://github.com/mellolucas/resume) to work offline from your good-new oftentimes-trusty IDE
+   - [![Download ZIP](https://img.shields.io/badge/%E2%BF%BB_Download-ZIP-_.svg?color=yellow&style=flat)](/../../archive/refs/heads/main.zip) and upload to [Overleaf](https://www.overleaf.com/) if you just don't want the hassle. If versioning is not your thing, you could just skip the whole GitHub part and download mine and go live your best life... who needs version control anyway? Yeah, c'mon! To live is to risk it all! Otherwise you’re just an inert chunk of randomly assembled molecules drifting wherever the universe blows you!!
+
 5. <todo from here>
+
+## Create Your Own Resume
+
+1. [Start from this template](https://github.com/new?template_owner=mellolucas&template_name=resume&owner=%40me&name=resume&description=Curriculum%20VitAI&prompt=placeholder-use-custom-agent) to create a new repository for your resume project. Unless you don't want to, then you can just skip to step 3's last option.
+2. At the creation prompt, after reviewing the pre-filled details, click on `Create repository` at the bottom of the page.
+3. Wait until [GitHub Actions](/../../actions/workflows/_repo-self-setup.yaml) set things up for you (takes less than a minute! Refresh the page to check the status)
+4. Open your project in your editor of choice:
+   - [![Spin-up a Codespace](https://img.shields.io/badge/Codespace-_?style=plastic&logo=github&label=Spin-up%20a&labelColor=2f363d&color=24292e)](https://codespaces.new/mellolucas/resume?quickstart=1) and start coding right away in a full-featured development environment tailored to your needs
+   - [![Open in GitHub.dev Web Editor](https://img.shields.io/badge/GitHub.dev-_?style=plastic&logo=refinedgithub&logoColor=white&label=Open%20in&labelColor=2f363d&color=24292e)](https://github.dev/mellolucas/resume) if you prefer a lightweight browser-based quick editing experience
+   - [![Clone locally with VS Code](https://img.shields.io/badge/Clone_with-VS_Code-0098FF.svg?style=plastic&logo=git&logoColor=white)](https://vscode.dev/redirect?url=vscode%3A%2F%2Fvscode.git%2Fclone%3Furl%3Dhttps%3A%2F%2Fgithub.com%2Fmellolucas%2Fresume) to work offline from your good-old and trusty IDE
+   - [![Clone locally with VS Code Insiders](https://img.shields.io/badge/Clone_with-VS_Code_Insiders-24bfa5.svg?style=plastic&logo=gitforwindows&logoColor=white)](https://vscode.dev/redirect?url=vscode-insiders%3A%2F%2Fvscode.git%2Fclone%3Furl%3Dhttps%3A%2F%2Fgithub.com%2Fmellolucas%2Fresume) to work offline from your good-new and oftentimes-trusty IDE
+   - [![Download ZIP](https://img.shields.io/badge/%E2%BF%BB_Download-ZIP-_.svg?color=yellow&style=plastic)](/../../archive/refs/heads/main.zip) and upload to [Overleaf](https://www.overleaf.com/) if you just don't want the hassle. If versioning is not your thing, you could just skip the whole GitHub part and download mine and go live your best life... who needs version control anyway? Yeah, c'mon! To live is to risk it all! Otherwise you’re just an inert chunk of randomly assembled molecules drifting wherever the universe blows you!!
+
+5. <todo from here>
+
+<!-- maybe use https://vscode.dev/redirect?url=<encoded-vscode-protocol-link> -->
 
 ## Structure
 
