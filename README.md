@@ -40,11 +40,23 @@ A modular LaTeX resume template with custom commands for consistent formatting a
    - [![Open in GitHub.dev Web Editor](https://img.shields.io/badge/GitHub.dev-_?style=plastic&logo=refinedgithub&logoColor=white&label=Open%20in&labelColor=2f363d&color=24292e)](https://github.dev/mellolucas/resume) if you prefer a lightweight browser-based quick editing experience
    - [![Clone locally with VS Code](https://img.shields.io/badge/Clone_with-VS_Code-0098FF.svg?style=plastic&logo=git&logoColor=white)](https://vscode.dev/redirect?url=vscode%3A%2F%2Fvscode.git%2Fclone%3Furl%3Dhttps%3A%2F%2Fgithub.com%2Fmellolucas%2Fresume) to work offline from your good-old and trusty IDE
    - [![Clone locally with VS Code Insiders](https://img.shields.io/badge/Clone_with-VS_Code_Insiders-24bfa5.svg?style=plastic&logo=gitforwindows&logoColor=white)](https://vscode.dev/redirect?url=vscode-insiders%3A%2F%2Fvscode.git%2Fclone%3Furl%3Dhttps%3A%2F%2Fgithub.com%2Fmellolucas%2Fresume) to work offline from your good-new and oftentimes-trusty IDE
-   - [![Download ZIP](https://img.shields.io/badge/%E2%BF%BB_Download-ZIP-_.svg?color=yellow&style=plastic)](/../../archive/refs/heads/main.zip) and upload to [Overleaf](https://www.overleaf.com/) if you just don't want the hassle. If versioning is not your thing, you could just skip the whole GitHub part and download mine and go live your best life... who needs version control anyway? Yeah, c'mon! To live is to risk it all! Otherwise you’re just an inert chunk of randomly assembled molecules drifting wherever the universe blows you!!
+   - [![Upload as a Project to Overleaf](https://img.shields.io/badge/Overleaf-_?style=flat&logo=overleaf&logoColor=white&label=Upload%20as%20a%20Project%20in&color=47A141)](https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2Fmellolucas%2Fresume%2Farchive%2Frefs%2Fheads%2Fmain.zip&snup_name=resume)
+   - [![Download ZIP](https://img.shields.io/badge/%E2%BF%BB_Download-ZIP-_.svg?color=yellow&style=plastic)](/../../archive/refs/heads/main.zip) if you just don't want the hassle. If versioning is not your thing, you could just skip the whole GitHub part and download mine and go live your best life... who needs version control anyway? Yeah, c'mon! To live is to risk it all! Otherwise you’re just an inert chunk of randomly assembled molecules drifting wherever the universe blows you!!
 
 5. <todo from here>
 
-<!-- maybe use https://vscode.dev/redirect?url=<encoded-vscode-protocol-link> -->
+<!-- later use https://vscode.dev/redirect?url=<encoded-vscode-protocol-link> -->
+
+other options:
+
+<details>
+    <summary>
+        <a id="latex-test" href="https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2Fmellolucas%2Fresume%2Farchive%2Frefs%2Fheads%2Fmain.zip&snup_name=resume">
+            <img src="https://img.shields.io/badge/-LaTeX-008080?style=flat&logo=latex&logoColor=white"/>
+         </a>
+    </summary>
+asdasdasd
+</details>
 
 ## Structure
 
