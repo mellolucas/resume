@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/git,zsh,node,linux,macos,xcode,windows,powershell,visualstudiocode,latex
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,zsh,node,linux,macos,xcode,windows,powershell,visualstudiocode,latex
 
+### Project-specific ###
+# Compiled resume PDF (generated from main.tex)
+main.pdf
+
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false

@@ -38,7 +38,7 @@
 
 :star: If you find this project useful, star it on GitHub, and subscribe for updates!
 
-[See what it dows](/../../main?tab=readme-ov-file) • [Create your own](#create-your-own) • [Understand the structure](#structure) • [Get help](#getting-help) • [Contribute](#contributing)
+[See what it does](/../../main?tab=readme-ov-file) • [Create your own](#create-your-own) • [Understand the structure](#structure) • [Get help](#getting-help) • [Contribute](#contributing)
 
 ![Animation showing the resume being compiled](./docs/images/demo.gif)
 
@@ -51,7 +51,13 @@ A modular, ATS-friendly LaTeX resume with reusable commands, clean defaults, and
 
 ## Features
 
-todo
+- **ATS-Friendly**: Single-column layout, standard section headers, Unicode-compliant PDF output, no graphics or tables in content
+- **Modular Structure**: Separate files for sections, constants, and reusable commands
+- **Multi-Engine Support**: Works with pdfLaTeX, LuaLaTeX, and XeLaTeX
+- **PDF Metadata**: Automatic title, author, keywords, and language tag for search engines and accessibility
+- **LaTeX3 Syntax**: Modern expl3 commands for robust text processing
+- **Professional Typography**: microtype for character protrusion and font expansion
+- **Development Environment**: Preconfigured devcontainer with LaTeX Workshop extension
 
 ## Create Your Own
 

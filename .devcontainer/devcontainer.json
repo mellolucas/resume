@@ -1,5 +1,5 @@
 {
-  "name": "Universal Codespace",
+  "name": "Resume Development Environment",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
   // Sets or overrides environment variables for the devcontainer supporting service/tool (VS Code) and related
@@ -45,8 +45,9 @@
     "ghcr.io/devcontainers/features/python:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
-    // "ghcr.io/devcontainers/features/go:1": {}
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+    // "ghcr.io/devcontainers/features/go:1": {},
+    "ghcr.io/devcontainers-contrib/features/latex:1": {} // LaTeX for resume compilation
   },
 
   "customizations": {
@@ -67,7 +68,9 @@
         "esbenp.prettier-vscode", // Fallback code formatter
 
         "redhat.vscode-yaml", // YAML language support
-        "ms-azuretools.vscode-docker" // Docker support
+        "ms-azuretools.vscode-docker", // Docker support
+
+        "james-yu.latex-workshop" // LaTeX editing, preview, and compilation
       ],
       "settings": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -77,7 +80,9 @@
         "markdown.extension.italic.indicator": "_",
         "markdown.extension.orderedList.marker": "one",
         "chat.agent.enabled": true,
-        "chat.mcp.enabled": true
+        "chat.mcp.enabled": true,
+        "latex-workshop.latex.autoBuild.run": "onSave",
+        "latex-workshop.view.pdf.viewer": "tab"
       }
     }
   }
