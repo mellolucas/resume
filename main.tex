@@ -9,12 +9,10 @@
 % ---- document class ----
 \documentclass[11pt]{article}       % set main text size
 
-% ---- packages ----
-% Core packages for document structure
-\usepackage{import}                 % enable import package for modular file structure
-\usepackage{xparse}                 % enable xparse for advanced command definitions
+% ---- engine detection ----
+\usepackage{iftex}                  % detect LaTeX engine for conditional loading
 
-% Page layout
+% ---- page layout ----
 \usepackage[letterpaper,            % set paper size (use a4paper for resumes outside North America)
 top=0.5in,                          % specify top page margin
 bottom=0.5in,                       % specify bottom page margin
@@ -24,21 +22,25 @@ right=0.5in]{geometry}              % specify right page margin
 % ---- fonts and encoding ----
 % XCharter: professional serif font, good for print resumes
 % Note: Available by default in Overleaf. For local compilation, install via TeX Live.
-% Alternative fonts: \usepackage{libertine}, \usepackage{lmodern}, or comment out for Computer Modern
-\usepackage{XCharter}               % set font (comment out to use default Computer Modern)
-\usepackage{iftex}                  % detect LaTeX engine for conditional loading
-
 \ifPDFTeX
   \usepackage[T1]{fontenc}          % font encoding for pdfLaTeX
   \usepackage[utf8]{inputenc}       % input encoding for pdfLaTeX
+  \usepackage{XCharter}             % set font for pdfLaTeX
 \else
   \usepackage{fontspec}             % font selection for LuaLaTeX/XeLaTeX
+  \setmainfont{XCharter}            % set font for LuaLaTeX/XeLaTeX
 \fi
+
+% ---- core packages for document structure ----
+\usepackage{import}                 % enable import package for modular file structure
+\usepackage{xparse}                 % enable xparse for advanced command definitions
 
 % ---- typography and formatting ----
 \usepackage{microtype}              % enable micro-typographic enhancements
 \usepackage{enumitem}               % enable lists for bullet points: itemize and \item
 \usepackage{titlesec}               % enable section title customization
+
+% ---- hyperlinks ----
 \usepackage[hidelinks]{hyperref}    % format hyperlinks without visible borders
 \usepackage{bookmark}               % improved PDF bookmarks (load after hyperref)
 
@@ -53,9 +55,12 @@ right=0.5in]{geometry}              % specify right page margin
   \pdfgentounicode=1
 \fi
 
+% ---- load commands ----
+% Import constants.tex, helpers.tex, and functions.tex
+\import{./}{commands.tex}
+
 % ---- PDF metadata (ATS-friendly and accessibility) ----
 % Set document metadata for search engines, ATS systems, and accessibility
-% Note: Placed after loading constants.tex so \name and \keywords are defined
 \hypersetup{
   pdftitle={Resume - \name},
   pdfauthor={\name},
@@ -73,10 +78,6 @@ right=0.5in]{geometry}              % specify right page margin
 % Format: small bullets, compact spacing
 \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
 \setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt}
-
-% ---- load commands ----
-% Import constants, helpers, and functions
-\import{./}{commands.tex}
 
 % ==========================================================================
 %                              DOCUMENT BODY
