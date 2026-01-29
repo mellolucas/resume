@@ -1,0 +1,24 @@
+% ---------- layout.tex ----------
+%
+% Centralized layout and formatting configuration.
+% Controls page margins, section styles, and list formatting.
+%
+
+% ---- page layout ----
+\usepackage[letterpaper,            % set paper size (use a4paper for resumes outside North America)
+top=0.5in,                          % specify top page margin
+bottom=0.5in,                       % specify bottom page margin
+left=0.5in,                         % specify left page margin
+right=0.5in]{geometry}              % specify right page margin
+
+\raggedright                        % disable text justification
+\pagestyle{empty}                   % disable page numbering
+
+% ---- section headings ----
+% Format: bold, large, with horizontal rule below
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
+
+% ---- bullet points ----
+% Format: small bullets, compact spacing
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt}
