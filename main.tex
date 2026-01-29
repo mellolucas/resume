@@ -67,15 +67,17 @@ right=0.5in]{geometry}              % specify right page margin
 
 % ---- PDF metadata (ATS-friendly and accessibility) ----
 % Set document metadata for search engines, ATS systems, and accessibility
-% Note: Placed after loading constants.tex so \name and \keywords are defined
-\hypersetup{
-  pdftitle={Resume - \name},
-  pdfauthor={\name},
-  pdfsubject={Professional Resume},
-  pdfkeywords={\keywords},
-  pdfcreator={LaTeX with hyperref},
-  pdfproducer={pdfTeX}
-}
+% Note: Using \edef to expand macros before hypersetup processes them (portable approach)
+\edef\cvhypersetup{%
+  \noexpand\hypersetup{%
+    pdftitle={Resume - \name},%
+    pdfauthor={\name},%
+    pdfsubject={Professional Resume},%
+    pdfkeywords={\keywords},%
+    pdfcreator={LaTeX with hyperref}%
+  }%
+}%
+\cvhypersetup
 
 % ==========================================================================
 %                              DOCUMENT BODY
