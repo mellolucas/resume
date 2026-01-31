@@ -37,6 +37,7 @@
 \seq_new:N \l__cv_date_parts_seq
 \tl_new:N  \l__cv_date_month_tl
 \tl_new:N  \l__cv_date_year_tl
+\tl_new:N  \l__cv_date_raw_tl
 
 % \dateMY{2026/01/15} -> Jan 2026
 % If input is not in YYYY/MM/DD form (e.g., "present"), prints it as-is.
@@ -54,8 +55,17 @@
         \__cv_month_abbrev:n { \l__cv_date_month_tl }~\l__cv_date_year_tl
       }
       {
-        % Not a YYYY/MM/DD triplet -> print as-is
-        #1
+        % Not a YYYY/MM/DD triplet -> normalize keywords
+        \tl_set:Nn \l__cv_date_raw_tl { #1 }
+        \tl_trim_spaces:N \l__cv_date_raw_tl
+        % Convert to lowercase for comparison
+        \tl_set:Nx \l__cv_date_raw_tl { \tl_lower_case:n { \l__cv_date_raw_tl } }
+        \str_case:VnF \l__cv_date_raw_tl
+          {
+            { present } { Present }
+            { current } { Present }
+          }
+          { #1 } % fallback: print original
       }
   }
 
