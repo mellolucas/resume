@@ -1,12 +1,14 @@
-% ---------- helpers ----------
+% ---------- helpers.tex ----------
 %
 % This file defines small, reusable helpers used by the resume commands.
 % It assumes core packages are loaded by main.tex (e.g., xparse, hyperref).
 %
 % Best practices:
 % - Uses expl3 (LaTeX3) syntax for robust string and list processing
-% - Properly scoped variables with \l__cv_ prefix to avoid conflicts
-% - URL handling via \tl_to_str:e to avoid manual escaping
+% - Properly scoped variables with \l__cv_ prefix to avoid naming conflicts
+% - URL handling via \tl_to_str:e to avoid manual escaping of special characters
+% - All commands are ATS-friendly (produce plain text in PDF output)
+%
 
 % ---- hyperlink ----
 % \link{visible text}{url}

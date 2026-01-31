@@ -32,13 +32,13 @@
 # Resume
 
 [![use this template](https://img.shields.io/badge/%F0%9F%93%A0_Use_this_-Template-_.svg?color=008000&style=for-the-badge)](https://github.com/new?template_owner=mellolucas&template_name=resume&owner=%40me&name=resume&description=Curriculum%20VitAI&prompt=placeholder-use-custom-agent)
-[![Kickstart in Overleaf](https://img.shields.io/badge/Overleaf-_?style=for-the-badge&logo=overleaf&logoColor=white&label=Kickstart%20in&color=47A141)](https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2Fmellolucas%2Fresume%2Farchive%2Frefs%2Fheads%2Fmain.zip&snup_name=resume)
+[![Kickstart in Overleaf](https://img.shields.io/badge/Overleaf-_?style=for-the-badge&logo=overleaf&logoColor=white&label=Kickstart%20in&color=47A141)](https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2Fmellolucas%2Fresume%2Farchive%2Frefs%2Fheads%2Fmain.zip&snip_name=resume)
 
 <br>
 
 :star: If you find this project useful, star it on GitHub, and subscribe for updates!
 
-[See what it dows](/../../main?tab=readme-ov-file) • [Create your own](#create-your-own) • [Understand the structure](#structure) • [Get help](#getting-help) • [Contribute](#contributing)
+[See what it does](/../../main?tab=readme-ov-file) • [Create your own](#create-your-own) • [Understand the structure](#structure) • [Get help](#getting-help) • [Contribute](#contributing)
 
 ![Animation showing the resume being compiled](./docs/images/demo.gif)
 
@@ -51,7 +51,13 @@ A modular, ATS-friendly LaTeX resume with reusable commands, clean defaults, and
 
 ## Features
 
-todo
+- **ATS-Friendly**: Single-column layout, standard section headers, Unicode-compliant PDF output, no graphics or tables in content
+- **Modular Structure**: Separate files for sections, constants, and reusable commands
+- **Multi-Engine Support**: Works with pdfLaTeX, LuaLaTeX, and XeLaTeX
+- **PDF Metadata**: Automatic title, author, keywords, and language tag for search engines and accessibility
+- **LaTeX3 Syntax**: Modern expl3 commands for robust text processing
+- **Professional Typography**: microtype for character protrusion and font expansion
+- **Development Environment**: Preconfigured devcontainer with LaTeX Workshop extension
 
 ## Create Your Own
 
@@ -99,14 +105,6 @@ todo
 <!-- TODO: in hindsight, a better option is nesting under each "clone/copy/start" option and then guide the user mentioning only the relevant steps and options for the chosen method -->
 
 <details><summary><strong>🏗️ Work in Progress 🚧</strong></summary>
-
-## Features
-
-- [x] **ATS-Friendly**: Single-column layout, standard section headers, Unicode-compliant PDF output
-- [x] **Modular Structure**: Separate files for sections, constants, and reusable commands
-- [x] **Multi-Engine Support**: Works with pdfLaTeX, LuaLaTeX, and XeLaTeX
-- [x] **PDF Metadata**: Automatic title, author, and keywords for search engines and accessibility
-- [ ] **GitHub Actions**: Automated PDF generation on push
 
 ## Create Your Own Resume
 

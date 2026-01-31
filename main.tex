@@ -5,9 +5,16 @@
 %
 % Build: pdflatex main.tex (or lualatex/xelatex for Unicode fonts)
 %
+% ATS Compatibility: This template follows best practices for Applicant Tracking Systems:
+%   - Single-column layout (no tables or multi-column environments)
+%   - Standard section headings (Summary, Skills, Experience, Education)
+%   - Unicode-compliant PDF output (glyphtounicode enabled)
+%   - No graphics, images, or skill bars in main content
+%   - Professional serif font (XCharter) with proper encoding
+%
 
 % ---- document class ----
-\documentclass[11pt]{article}       % set main text size
+\documentclass[11pt]{article}       % standard article class, 11pt for readability
 
 % ---- engine detection ----
 \usepackage{iftex}                  % detect LaTeX engine for conditional loading
@@ -20,10 +27,10 @@ left=0.5in,                         % specify left page margin
 right=0.5in]{geometry}              % specify right page margin
                        
 % ---- fonts and encoding ----
-% XCharter: professional serif font, good for print resumes
+% XCharter: professional serif font, good for print resumes and ATS compatibility
 % Note: Available by default in Overleaf. For local compilation, install via TeX Live.
 \ifPDFTeX
-  \usepackage[T1]{fontenc}          % font encoding for pdfLaTeX
+  \usepackage[T1]{fontenc}          % font encoding for pdfLaTeX (required for proper hyphenation)
   \usepackage[utf8]{inputenc}       % input encoding for pdfLaTeX
   \usepackage{XCharter}             % set font for pdfLaTeX
 \else
@@ -33,10 +40,12 @@ right=0.5in]{geometry}              % specify right page margin
 
 % ---- core packages for document structure ----
 \usepackage{import}                 % enable import package for modular file structure
-\usepackage{xparse}                 % enable xparse for advanced command definitions
+\usepackage{xparse}                 % enable xparse for advanced command definitions (LaTeX3)
 
 % ---- typography and formatting ----
-\usepackage{microtype}              % enable micro-typographic enhancements
+% microtype: enables micro-typographic enhancements (character protrusion, font expansion)
+% Best practice: use default settings for most documents; explicit options for fine-tuning
+\usepackage[protrusion=true,expansion=true,final]{microtype}
 \usepackage{enumitem}               % enable lists for bullet points: itemize and \item
 \usepackage{titlesec}               % enable section title customization
 
@@ -44,15 +53,15 @@ right=0.5in]{geometry}              % specify right page margin
 \usepackage[hidelinks]{hyperref}    % format hyperlinks without visible borders
 \usepackage{bookmark}               % improved PDF bookmarks (load after hyperref)
 
-% ---- page layout ----
-\raggedright                        % disable text justification
+% ---- page layout settings ----
+\raggedright                        % disable text justification (improves ATS readability)
 \pagestyle{empty}                   % disable page numbering
 
 % ---- PDF accessibility (pdfLaTeX only) ----
 % Ensure PDF output is Unicode-compliant and machine-readable (ATS-friendly)
 \ifPDFTeX
-  \input{glyphtounicode}
-  \pdfgentounicode=1
+  \input{glyphtounicode}            % load glyph-to-Unicode mappings
+  \pdfgentounicode=1                % enable Unicode text extraction from PDF
 \fi
 
 % ---- load commands ----
@@ -67,15 +76,18 @@ right=0.5in]{geometry}              % specify right page margin
   pdfsubject={Professional Resume},
   pdfkeywords={\keywords},
   pdfcreator={LaTeX with hyperref},
-  pdfproducer={pdfTeX}
+  pdfproducer={pdfTeX},
+  pdflang={en-US}                   % document language for accessibility
 }
 
 % ---- section headings ----
 % Format: bold, large, with horizontal rule below
+% Note: Using standard \section* for ATS compatibility (standard heading recognized)
 \titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
 
 % ---- bullet points ----
 % Format: small bullets, compact spacing
+% Best practice: consistent bullet styling improves readability
 \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
 \setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt}
 
