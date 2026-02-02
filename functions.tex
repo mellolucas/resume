@@ -1,7 +1,7 @@
 % ---------- functions.tex ----------
 %
 % Public, document-facing commands used by the resume sections.
-% Base commands do NOT force a line break; *line variants do.
+% Star variants (*) force a line break after the entry.
 %
 % Best practices:
 % - All commands use expl3 (LaTeX3) syntax for robust text processing
@@ -52,7 +52,7 @@
 
 % ---- job entry ----
 % \job[seniority]{profession}{role}{Company}{City, ST}{YYYY/MM/DD}{YYYY/MM/DD|present}
-% \jobline... same output, but ends with \\ for one-entry-per-line usage.
+% \job*[seniority]{...} - same output, but ends with \\ for one-entry-per-line usage.
 %
 % Parameters:
 %   [seniority] - Optional prefix like "Senior" or "Lead"
@@ -65,14 +65,11 @@
 %
 \ExplSyntaxOn
 
-\NewDocumentCommand{\job}{o m m m m m m}{%
-  \textbf{\IfValueTF{#1}{#1~#2}{#2}}%
-  \tl_if_blank:nTF {#3}{}{,~#3}~%
-  @~#4~--~#5 \hfill \dateMY{#6}~--~\dateMY{#7}%
-}
-
-\NewDocumentCommand{\jobline}{o m m m m m m}{%
-  \job[#1]{#2}{#3}{#4}{#5}{#6}{#7}\\%
+\NewDocumentCommand{\job}{s o m m m m m m}{%
+  \textbf{\IfValueTF{#2}{#2~#3}{#3}}%
+  \tl_if_blank:nTF {#4}{}{,~#4}~%
+  @~#5~--~#6 \hfill \dateMY{#7}~--~\dateMY{#8}%
+  \IfBooleanT{#1}{\\}%
 }
 
 \ExplSyntaxOff
@@ -87,7 +84,7 @@
 
 % ---- education entry ----
 % \education[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \educationline... same output, but ends with \\ for one-entry-per-line usage.
+% \education*[...]{...} - same output, but ends with \\ for one-entry-per-line usage.
 %
 % Parameters:
 %   [credential-id] - Optional credential/certificate ID
@@ -96,47 +93,42 @@
 %   {Title} - Degree/certificate title
 %   {date} - Completion date in YYYY/MM/DD format
 %
-\NewDocumentCommand{\education}{o o m m m}{%
-  \textbf{#3}~--~#4%
-  \IfValueT{#1}{~(\IfValueTF{#2}{\id{#1}[#2]}{\id{#1}})}%
-  \hfill \dateMY{#5}%
-}
-
-\NewDocumentCommand{\educationline}{o o m m m}{%
-  \education[#1][#2]{#3}{#4}{#5}\\%
+\NewDocumentCommand{\education}{s o o m m m}{%
+  \textbf{#4}~--~#5%
+  \IfValueT{#2}{~(\IfValueTF{#3}{\id{#2}[#3]}{\id{#2}})}%
+  \hfill \dateMY{#6}%
+  \IfBooleanT{#1}{\\}%
 }
 
 % ---- certification entry ----
 % \certification[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \certificationline... same output, but ends with \\ for one-entry-per-line usage.
+% \certification*[...]{...} - same output, but ends with \\ for one-entry-per-line usage.
 %
 % Note: Automatically prefixes title with "Certification:"
 %
-\NewDocumentCommand{\certification}{o o m m m}{%
-  \education[#1][#2]{#3}{Certification:~#4}{#5}%
-}
-
-\NewDocumentCommand{\certificationline}{o o m m m}{%
-  \certification[#1][#2]{#3}{#4}{#5}\\%
+\NewDocumentCommand{\certification}{s o o m m m}{%
+  \textbf{#4}~--~Certification:~#5%
+  \IfValueT{#2}{~(\IfValueTF{#3}{\id{#2}[#3]}{\id{#2}})}%
+  \hfill \dateMY{#6}%
+  \IfBooleanT{#1}{\\}%
 }
 
 % ---- license entry ----
 % \license[credential-id][optional-url]{Issuer}{Title}{YYYY/MM/DD}
-% \licenseline... same output, but ends with \\ for one-entry-per-line usage
+% \license*[...]{...} - same output, but ends with \\ for one-entry-per-line usage.
 %
 % Note: Automatically prefixes title with "License:"
 %
-\NewDocumentCommand{\license}{o o m m m}{%
-  \education[#1][#2]{#3}{License:~#4}{#5}%
-}
-
-\NewDocumentCommand{\licenseline}{o o m m m}{%
-  \license[#1][#2]{#3}{#4}{#5}\\%
+\NewDocumentCommand{\license}{s o o m m m}{%
+  \textbf{#4}~--~License:~#5%
+  \IfValueT{#2}{~(\IfValueTF{#3}{\id{#2}[#3]}{\id{#2}})}%
+  \hfill \dateMY{#6}%
+  \IfBooleanT{#1}{\\}%
 }
 
 % ---- skill entries ----
 % \skill{Category}{skill1, skill2, ..., skillN}
-% \skillline... same output, but ends with \\ for one-entry-per-line usage.
+% \skill*{...} - same output, but ends with \\ for one-entry-per-line usage.
 %
 % Parameters:
 %   {Category} - Skill category name (e.g., "Programming Languages")
@@ -148,12 +140,11 @@
 
 \seq_new:N \l__cv_skill_seq
 \tl_new:N  \l__cv_skill_item_tl
+\bool_new:N \l__cv_skill_newline_bool
 
-\NewDocumentCommand{\skill}{m m}
-  { \__cv_skill_render:nn { #1 } { #2 } }
-
-\NewDocumentCommand{\skillline}{m m}{%
-  \skill{#1}{#2}\\%
+\NewDocumentCommand{\skill}{s m m}{%
+  \bool_set:Nn \l__cv_skill_newline_bool { #1 }
+  \__cv_skill_render:nn { #2 } { #3 }
 }
 
 \cs_new_protected:Npn \__cv_skill_render:nn #1 #2
@@ -173,7 +164,10 @@
 
     % Only print if at least one item exists
     \seq_if_empty:NF \l__cv_skill_seq
-      { \textbf{#1:}~\seq_use:Nn \l__cv_skill_seq { ,~ } }
+      {
+        \textbf{#1:}~\seq_use:Nn \l__cv_skill_seq { ,~ }
+        \bool_if:NT \l__cv_skill_newline_bool { \\ }
+      }
   }
 
 \ExplSyntaxOff
