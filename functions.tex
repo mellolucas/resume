@@ -164,9 +164,10 @@
 
     % Only print if at least one item exists
     \seq_if_empty:NF \l__cv_skill_seq
-      { \textbf{#1:}~\seq_use:Nn \l__cv_skill_seq { ,~ } }
-    
-    \bool_if:NT \l__cv_skill_newline_bool { \\ }
+      {
+        \textbf{#1:}~\seq_use:Nn \l__cv_skill_seq { ,~ }
+        \bool_if:NT \l__cv_skill_newline_bool { \\ }
+      }
   }
 
 \ExplSyntaxOff
